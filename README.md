@@ -1,42 +1,61 @@
-### Objetivo del juego/aplicación
-El objetivo del juego/aplicación es ...
+### Objetivo de la aplicación
+El objetivo de la aplicación es proporcionar una herramienta a trabajadores  y comensales dentro de un restaurante para facilitar la consulta, toma de pedidos y realización de los mismos.
 
-### Descripción del juego/aplicación
-La descripción del juego/aplicación es ...
+### Descripción de la aplicación
+La aplicación proporciona a la persona el menú y la información que requiere de un restaurante; a los meseros, la distribución y sus tareas correspondientes; a los cocineros, las ordenes a preparar y facilidades para indicar que ya están listas; y a los jefes, el control de todas las características relacionadas con el establecimiento.
 
 ### Clases principales y sus características
-1. Clase 1
-* caracteristica1
-* caracteristica2
-* caracteristica3
+1. Usuario
+* nombre : String
+* correoElectronico : String
+* restaurantes : ArrayList<Restaurante>
 
-2. Clase 2
-* caracteristica1
-* caracteristica2
-* caracteristica3
+2. Restaurante
+* nombre : String
+* direccion : String
+* telefono : String
+* horario: String //quizás cambie
+* empleados :  ArrayList<Empleado>
+* menu : Menu
+* mesas : ArrayList <Mesa>
 
-3. Clase 3
-* caracteristica1
-* caracteristica2
-* caracteristica3
+3. Menu
+* menu : ArrayList<Platillo>
 
-4. Clase 4
-* caracteristica1
-* caracteristica2
-* caracteristica3
+4. Empleado
+* horario : String  //quizás cambie
+* disponibilidad : Boolean
 
-5. Clase 5
-* caracteristica1
-* caracteristica2
-* caracteristica3
+5. Platillo
+* nombre : String
+* tipo : String
+* costo : float
+* descripcion : String
+
+6. Mesero
+* mesasCorrespondientes : ArrayList<Mesa> 
+
+7. Cocinero
+* pedidos : ArrayList<Pedido>
+
+8. Mesa
+* pedido : Pedido
+* capacidad : int
+* identificador : int
+* estaOcupada : Boolean
+
+9. Pedido
+* orden : ArrayList <Platillo>
+* estaListo : boolean  
+* nota : String
 
 ### Diagrama de clases
-![Diagrama de clases](url-del-diagrama.png)
+![Diagrama de clases](https://github.com/acominf/AppRestaurante/blob/master/im%C3%A1genes/Diagrama%20de%20clases%20UML.png)
 
 ### Autor(es)
 El autor(es) del proyecto son:
-- Nombre completo del autor 1 (@nombreUsuarioGitHub)
-- Nombre completo del autor 2 (@nombreUsuarioGitHub)
+- Mayra Lucero García Ramírez (@mayralgr)
+- Víctor Andrián Suárez  Ruiz (@BigThor)
 
 ### Materia(s)
 - Programación Orientada a Objetos
