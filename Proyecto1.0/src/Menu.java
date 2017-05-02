@@ -24,7 +24,7 @@ public class Menu {
         while(it.hasNext())
         {
             temp = it.next();
-            if(temp.regresaPlatillo()==nom)
+            if(temp.accederNombre()==nom)
             {
                 it.remove();
             }

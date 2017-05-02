@@ -38,7 +38,6 @@ public class Usuario
             if(r.regresaNombre() == nombre)
             {
                 temp = r;
-
             }
         }
         return temp;

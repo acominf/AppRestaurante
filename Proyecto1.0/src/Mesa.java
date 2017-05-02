@@ -7,6 +7,9 @@ public class Mesa
     private int capacidad;
     private int identificador;
     private Boolean estaOcupada;
+    private int coorX;
+    private int coordY;
+    private int seccion;
 
     /**
      *
@@ -17,6 +20,9 @@ public class Mesa
     {
         capacidad=cap;
         identificador=id;
+        estaOcupada = false;
+        coorX = 25;
+        coordY = 25;
     }
 
     public int accessid()
@@ -26,7 +32,9 @@ public class Mesa
 
     public void agregarPedido(Pedido p)
     {
-        pedido=p;
+        pedido = p;
     }
+
+    public Pedido accederPedido(){ return pedido; }
 
 }

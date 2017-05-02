@@ -14,13 +14,18 @@ public class Pedido {
         estaListo = false;
     }
 
-    public void agregarPlatillo(Platillo p)
+    public void agregarPlatillo(Platillo pl)
     {
-        orden.add(p);
+        orden.add(pl);
     }
 
     public boolean isReady()
     {
         return estaListo;
+    }
+
+    public boolean marcarListo()
+    {
+        estaListo = true;
     }
 }

@@ -13,9 +13,11 @@ public class Restaurante
     private ArrayList<Empleado> empleados;
     private ArrayList<Mesa> mesas;
     private Menu menu;
+    private int cantSeccion;
 
-    public Restaurante()
+    public Restaurante(String nom, String dir, String tel, String hor)
     {
+        /*No me termine de convencer y lo deje en comentarios jeje
         Scanner sc = new Scanner(System.in);
         System.out.println("Nombre: ");
         nombre = sc.nextLine();
@@ -24,10 +26,13 @@ public class Restaurante
         System.out.println("Telefono: ");
         telefono = sc.nextLine();
         System.out.println("Horario: ");
-        horario = sc.nextLine();
+        horario = sc.nextLine();*/
+        nombre = nom;
+        direccion = dir;
+        telefono = tel;
+        horario = hor;
         empleados = new ArrayList<Empleado>();
         mesas = new ArrayList<Mesa>();
-
     }
 
     public void agregarEmpleado(Empleado nuevo)
@@ -39,5 +44,4 @@ public class Restaurante
     {
         return nombre;
     }
-
 }

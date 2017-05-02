@@ -6,8 +6,9 @@ public class Platillo {
     private String tipo;
     private float costo;
     private String descripcion;
+    //considerar variable para foto
 
-    public String regresaPlatillo()
+    public String accederNombre()
     {
         return  nombre;
     }

@@ -12,13 +12,12 @@ public class Mesero extends Empleado
     {
         super(nom,correo,hor);
         mesasCorrespondientes=new ArrayList<Mesa>();
-
     }
     /**
      *
      * @param idMesa identidicador de la mesa que se le agrega al mesero
      */
-    public void agregarMesa(Mesa idMesa)//agregue esto
+    public void agregarMesa(Mesa idMesa)
     {
         mesasCorrespondientes.add(idMesa);
     }
@@ -38,9 +37,23 @@ public class Mesero extends Empleado
                 m.agregarPedido(pedido);
             }
         }
+    }
 
-
-
+    /**
+     * Metodo que comprueba los pedidos de las mesas
+     * que le corresponden al mesero, notificando
+     * cuando un pedido esta listo
+     */
+    public void notificarListo()
+    {
+        for(Mesa m : mesasCorrespondientes)
+        {
+            if((m.accederPedido()).isReady())
+            {
+                //Mensaje de notificacion
+                System.out.println("LISTO el pedido de la mesa " + m.accessid());
+            }
+        }
     }
 
 }
