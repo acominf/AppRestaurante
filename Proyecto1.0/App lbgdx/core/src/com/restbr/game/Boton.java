@@ -27,8 +27,8 @@ public class Boton {
     {
         shpr.setColor(Color.BLACK);
         BitmapFont bitmapFont = new BitmapFont();
-        bitmapFont.setColor(0,0,1,0);
+        bitmapFont.setColor(0,0,1,1);
         shpr.rect((float)x, (float)y, 80,40);
-        bitmapFont.draw(batch,cadena,(float)x, (float)y );
+        bitmapFont.draw(batch,cadena,(float)x+10, (float)y+25 );
     }
 }

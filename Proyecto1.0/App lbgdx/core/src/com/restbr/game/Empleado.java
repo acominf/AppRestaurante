@@ -1,4 +1,5 @@
 package com.restbr.game;
+
 /**
  * Created by lucerogarcia on 29/04/17.
  * Clase empleado
@@ -23,3 +24,4 @@ public class Empleado extends Usuario
 
 
 }
+

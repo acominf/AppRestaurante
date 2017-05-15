@@ -1,4 +1,5 @@
 package com.restbr.game;
+
 import java.util.ArrayList;
 
 /**
@@ -7,17 +8,38 @@ import java.util.ArrayList;
 public class Pedido {
     private ArrayList<Platillo> orden;
     private  boolean estaListo;
-    private String nota;
+    private ArrayList<String>  notas;
 
     public Pedido()
     {
         orden = new ArrayList<Platillo>();
+        notas = new ArrayList<String>();
         estaListo = false;
     }
 
     public void agregarPlatillo(Platillo pl)
     {
         orden.add(pl);
+        notas.add("");
+    }
+
+    public int buscarIndice(String nom)
+    {
+        int i;
+        for(i=0;i<orden.size();i++)
+        {
+            if(orden.get(i).accederNombre()==nom)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void agregarNota(String platillo, String nota)
+    {
+        int i = buscarIndice(platillo);
+        notas.set(i,nota);
     }
 
     public boolean isReady()
@@ -30,3 +52,4 @@ public class Pedido {
         estaListo = true;
     }
 }
+
