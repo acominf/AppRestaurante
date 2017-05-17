@@ -46,7 +46,6 @@ public class Mesa
     public int accederY() { return coordY;
     }
 
-    public int accederId() {
-        return identificador;
+    public int accederId() { return identificador;
     }
 }

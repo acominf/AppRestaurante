@@ -3,6 +3,8 @@ package com.restbr.game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
+
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -28,6 +30,11 @@ public class MenuApp {
         {
             b.dibujaBoton(shpr,batch);
         }
+    }
+
+    public ArrayList accederBotones()
+    {
+        return botones;
     }
 
 }

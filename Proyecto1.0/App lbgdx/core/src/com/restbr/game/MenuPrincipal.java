@@ -1,6 +1,5 @@
 package com.restbr.game;
 
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -8,11 +7,12 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.*;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Created by lucerogarcia on 09/05/17.
  */
-public class MenuPrincipal implements Screen {
+public class MenuPrincipal implements Pantalla { // Screen
     final AppRestaurante game;
     MenuApp menuApp;
     ShapeRenderer shapeRenderer;
@@ -21,9 +21,9 @@ public class MenuPrincipal implements Screen {
     {
         this.game = game;
         menuApp = new MenuApp();
-        menuApp.addButton(20,300,"holi");
-        menuApp.addButton(20,260,"crayoli");
-        menuApp.addButton(20,220,"holi de nuevo");
+        menuApp.addButton(20,300,"Croquis");
+        menuApp.addButton(20,260,"Restaurant");
+        menuApp.addButton(20,220,"Restaurante 2");
         shapeRenderer = new ShapeRenderer();
     }
 
@@ -39,7 +39,6 @@ public class MenuPrincipal implements Screen {
         TextField txtUsername = new TextField("");
         txtUsername.setText("test");
         txtUsername.setLocation(30, 30);
-
         shapeRenderer.end();
         game.batch.end();
     }
@@ -70,5 +69,33 @@ public class MenuPrincipal implements Screen {
 
     }
 
+    public int coordenadasX()
+    {
+        int x = Gdx.input.getX();
+        return x;
+    }
 
+    public int coordenadasY()
+    {
+        int y = Gdx.input.getY();
+        return y;
+    }
+
+    @Override
+    public int interactua(int xm,int ym)
+    {
+        ArrayList <Boton> boton = new ArrayList<Boton>();
+        boton = menuApp.accederBotones();
+        for(Boton b : boton)
+        {
+            if(xm>=b.getX() && xm<=b.getX()+80 && ym>=b.getY() && ym<=b.getY()+40)
+            {
+                if(b.getCadena()=="Croquis")
+                {
+                    return 1;
+                }
+            }
+        }
+        return 0;
+    }
 }

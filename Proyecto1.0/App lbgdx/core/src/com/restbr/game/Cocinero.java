@@ -1,5 +1,4 @@
 package com.restbr.game;
-
 import java.util.ArrayList;
 
 /**

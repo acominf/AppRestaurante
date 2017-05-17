@@ -11,11 +11,12 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import java.util.ArrayList;
 
 
-public class DiagramaMesas implements Screen{
+public class DiagramaMesas implements Pantalla{
 
     final AppRestaurante game;
     ArrayList<Usuario> usuarios;
     ShapeRenderer shapeRenderer;
+
 
     public DiagramaMesas(final AppRestaurante game) {
         this.game = game;
@@ -24,7 +25,9 @@ public class DiagramaMesas implements Screen{
         usuarios.add( new Usuario("Mayra", "holi@GGmail.com") );
         usuarios.get(0).crearRestaurante(new Restaurante("Tortas chidas", "una de por ahi", "444nomeacuerdo:C", "12:00 - 19:00", 1) );
         usuarios.get(0).buscarRestaurante("Tortas chidas").añadirMesas(2, 1);
+
     }
+
 
     @Override
     public void render(float delta) {
@@ -37,6 +40,23 @@ public class DiagramaMesas implements Screen{
         usuarios.get(0).buscarRestaurante("Tortas chidas").dibujarMesas(shapeRenderer, game.batch);
         shapeRenderer.end();
         game.batch.end();
+    }
+
+    public int interactua(int xm,int ym)
+    {
+        ArrayList <Mesa> mesas = new ArrayList<Mesa>();
+        for(Mesa m : mesas)
+        {
+            if(m.accederX()<=xm && m.accederX()+25>=xm && m.accederY()<=ym && m.accederY()+25>=ym)
+            {
+                //aqui vamos a imprimir una imagen
+            }
+            else
+            {
+                //if()//coordenadas del boton de regresar
+            }
+        }
+        return 0;
     }
 
     @Override

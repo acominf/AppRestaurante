@@ -65,22 +65,32 @@ public class AppRestaurante extends Game{
 	public void render () {
 		super.render();
 		if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
-			if(this.getScreen() == menuPrincipal) {
+			Pantalla current =(Pantalla) this.getScreen();
+			int p=current.interactua(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
+			if(p==1)
+			{
+				this.setScreen(croquis);
+			}
+			/*if(this.getScreen() == menuPrincipal) {
 				this.setScreen(croquis);
 				Gdx.input.getTextInput(aux, "Buscar", "", "Nombre del restaurante");
-			}
+			}*/
 		}
 		else {
-			this.setScreen(menuPrincipal);
+			if (Gdx.input.isButtonPressed(Input.Buttons.RIGHT)) {
+				this.setScreen(menuPrincipal);
+			}
 		}
 	}
 
 
 	@Override
-	public void dispose () {
+	public void dispose ()
+	{
 		batch.dispose();
+		//shapeRenderer.dispose();
+		//font.dispose();
 	}
-
 
 
 }

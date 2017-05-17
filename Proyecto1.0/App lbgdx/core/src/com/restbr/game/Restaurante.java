@@ -1,5 +1,5 @@
-
 package com.restbr.game;
+
 import java.util.ArrayList;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -22,16 +22,6 @@ public class Restaurante
 
     public Restaurante(String nom, String dir, String tel, String hor, int cantSec)
     {
-        /*No me termine de convencer y lo deje en comentarios jeje
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Nombre: ");
-        nombre = sc.nextLine();
-        System.out.println("dirección: ");
-        direccion = sc.nextLine();
-        System.out.println("Telefono: ");
-        telefono = sc.nextLine();
-        System.out.println("Horario: ");
-        horario = sc.nextLine();*/
         nombre = nom;
         direccion = dir;
         telefono = tel;
@@ -39,6 +29,11 @@ public class Restaurante
         empleados = new ArrayList<Empleado>();
         mesas = new ArrayList<Mesa>();
         cantSeccion = cantSec;
+    }
+
+    public ArrayList mesasRes()
+    {
+        return mesas;
     }
 
     public void agregarEmpleado(Empleado nuevo)
@@ -59,8 +54,8 @@ public class Restaurante
         for(Mesa m: mesas)
         {
             shpr.circle((float)m.accederX(), (float)m.accederY(), 20);
-            s="a"+m.accederId();
-            bitmapFont.draw(batch, "s", (float)m.accederX(), (float)m.accederY() );
+            s=""+m.accederId();
+            bitmapFont.draw(batch, s , (float)m.accederX(), (float)m.accederY() );
         }
     }
 

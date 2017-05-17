@@ -29,6 +29,21 @@ public class Boton {
         BitmapFont bitmapFont = new BitmapFont();
         bitmapFont.setColor(0,0,1,1);
         shpr.rect((float)x, (float)y, 80,40);
-        bitmapFont.draw(batch,cadena,(float)x+10, (float)y+25 );
+        bitmapFont.draw(batch,cadena,(float)x+10, (float)y+20 );
+    }
+
+    public int getX()
+    {
+        return x;
+    }
+
+    public int getY()
+    {
+        return y;
+    }
+
+    public String getCadena()
+    {
+        return cadena;
     }
 }
