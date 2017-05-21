@@ -24,7 +24,7 @@ public class DiagramaMesas implements Pantalla{
         shapeRenderer = new ShapeRenderer();
         usuarios.add( new Usuario("Mayra", "holi@GGmail.com") );
         usuarios.get(0).crearRestaurante(new Restaurante("Tortas chidas", "una de por ahi", "444nomeacuerdo:C", "12:00 - 19:00", 1) );
-        usuarios.get(0).buscarRestaurante("Tortas chidas").añadirMesas(2, 1);
+        usuarios.get(0).buscarRestaurante("Tortas chidas").añadirMesas(20, 1);
 
     }
 

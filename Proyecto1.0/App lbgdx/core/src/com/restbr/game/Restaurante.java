@@ -54,6 +54,7 @@ public class Restaurante
         for(Mesa m: mesas)
         {
             shpr.circle((float)m.accederX(), (float)m.accederY(), 20);
+            //System.out.println("mesa"+m.accederId()+" x= "+(float)m.accederX()+" y= "+ (float)m.accederY());
             s=""+m.accederId();
             bitmapFont.draw(batch, s , (float)m.accederX(), (float)m.accederY() );
         }
@@ -62,9 +63,9 @@ public class Restaurante
     public void añadirMesas(int cant, int numSecc)
     {
         int tam = mesas.size();
-        for (int i = tam +1; i < tam +cant; i++)
+        for (int i = tam+1; i < tam +cant; i++)
         {
-            mesas.add( new Mesa(5, i, numSecc) );
+            mesas.add(new Mesa(5, i, numSecc) );
         }
     }
 }
