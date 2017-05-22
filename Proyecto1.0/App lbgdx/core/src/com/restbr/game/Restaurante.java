@@ -63,7 +63,7 @@ public class Restaurante
     public void añadirMesas(int cant, int numSecc)
     {
         int tam = mesas.size();
-        for (int i = tam+1; i < tam +cant; i++)
+        for (int i = tam + 1; i < tam +cant +1; i++)
         {
             mesas.add(new Mesa(5, i, numSecc) );
         }

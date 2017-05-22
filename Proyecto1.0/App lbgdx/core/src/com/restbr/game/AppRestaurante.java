@@ -2,16 +2,10 @@ package com.restbr.game;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-
-import java.awt.*;
 import java.awt.TextField;
-import java.util.ArrayList;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
 
 import static javax.swing.SwingConstants.*;
@@ -20,13 +14,12 @@ import static javax.swing.SwingConstants.*;
 public class AppRestaurante extends Game{
 	SpriteBatch batch;
 	ShapeRenderer shapeRenderer;
-	ArrayList<Usuario> usuarios;
-	BitmapFont font;
-	MenuApp Menu;
 	DiagramaMesas croquis;
 	MenuPrincipal menuPrincipal;
 	Escuchador aux;
+	Pantalla current;
 	TextField textField;
+    private int p;
 
 
 	class Escuchador implements Input.TextInputListener{
@@ -57,18 +50,22 @@ public class AppRestaurante extends Game{
 		menuPrincipal = new MenuPrincipal(this);
 		aux = new Escuchador();
 		TextFieldStyle textFieldStyle = new TextFieldStyle();
-		//textField = new TextField("", textFieldStyle);
-		this.setScreen(menuPrincipal);
+		current = menuPrincipal;
+		this.setScreen(current);
+		p = 0;
 	}
 
 	@Override
 	public void render () {
 		super.render();
 		if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
-			Pantalla current =(Pantalla) this.getScreen();
-			int p=current.interactua(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
+		    int mouseX = Gdx.input.getX();
+		    int mouseY = Gdx.graphics.getHeight() - Gdx.input.getY();
+
+            p=current.interactua(mouseX, mouseY);
 			if(p==1)
 			{
+				current = croquis;
 				this.setScreen(croquis);
 			}
 			/*if(this.getScreen() == menuPrincipal) {
@@ -88,8 +85,6 @@ public class AppRestaurante extends Game{
 	public void dispose ()
 	{
 		batch.dispose();
-		//shapeRenderer.dispose();
-		//font.dispose();
 	}
 
 

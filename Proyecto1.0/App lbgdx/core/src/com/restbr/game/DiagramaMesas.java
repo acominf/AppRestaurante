@@ -4,8 +4,11 @@ package com.restbr.game;
  * Created by lucerogarcia on 09/05/17.
  */
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import java.util.ArrayList;
@@ -16,6 +19,8 @@ public class DiagramaMesas implements Pantalla{
     final AppRestaurante game;
     ArrayList<Usuario> usuarios;
     ShapeRenderer shapeRenderer;
+    private Texture texture;
+    private Sprite imagen;
 
 
     public DiagramaMesas(final AppRestaurante game) {
@@ -25,7 +30,8 @@ public class DiagramaMesas implements Pantalla{
         usuarios.add( new Usuario("Mayra", "holi@GGmail.com") );
         usuarios.get(0).crearRestaurante(new Restaurante("Tortas chidas", "una de por ahi", "444nomeacuerdo:C", "12:00 - 19:00", 1) );
         usuarios.get(0).buscarRestaurante("Tortas chidas").añadirMesas(20, 1);
-
+        texture = new Texture("OpcionesMesa.jpg");
+        imagen = new Sprite(texture);
     }
 
 
@@ -44,11 +50,18 @@ public class DiagramaMesas implements Pantalla{
 
     public int interactua(int xm,int ym)
     {
-        ArrayList <Mesa> mesas = new ArrayList<Mesa>();
+        ArrayList <Mesa> mesas = usuarios.get(0).buscarRestaurante("Tortas chidas").mesasRes();
         for(Mesa m : mesas)
         {
-            if(m.accederX()<=xm && m.accederX()+25>=xm && m.accederY()<=ym && m.accederY()+25>=ym)
+            int xMesa = m.accederX();
+            int yMesa = m.accederY();
+
+            if(xMesa-25 <=xm && xMesa+25>=xm && yMesa-25<=ym && yMesa+25>=ym)
             {
+                game.batch.begin();
+                imagen.setPosition(xMesa + 40, yMesa - 130);
+                imagen.draw(game.batch);
+                game.batch.end();
                 //se imprime la imagen del menu de mesa
                 //para el boton de más
                 /*if(ix+25<=xm && ix+75>=xm && iy+95<=ym && iy+145>=ym)//ix, iy siendo las coordenadas donde empieza la imagen
@@ -95,7 +108,7 @@ public class DiagramaMesas implements Pantalla{
 
     @Override
     public void dispose() {
-
+        texture.dispose();
     }
 
 
