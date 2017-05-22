@@ -49,7 +49,20 @@ public class DiagramaMesas implements Pantalla{
         {
             if(m.accederX()<=xm && m.accederX()+25>=xm && m.accederY()<=ym && m.accederY()+25>=ym)
             {
-                //aqui vamos a imprimir una imagen
+                //se imprime la imagen del menu de mesa
+                //para el boton de más
+                /*if(ix+25<=xm && ix+75>=xm && iy+95<=ym && iy+145>=ym)//ix, iy siendo las coordenadas donde empieza la imagen
+                {
+
+                }
+                else if(ix+100<=xm && ix+150>=xm && iy+95<=ym && iy+145>=ym)//boton -
+                {
+
+                }
+                else if(ix+175<=xm && ix+225>=xm && iy+95<=ym && iy+145>=ym)//boton lista
+                {
+
+                }*/
             }
             else
             {
