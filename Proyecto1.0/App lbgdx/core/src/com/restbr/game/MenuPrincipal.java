@@ -3,6 +3,8 @@ package com.restbr.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.*;
 
@@ -14,6 +16,8 @@ import java.util.ArrayList;
  */
 public class MenuPrincipal implements Pantalla { // Screen
     final AppRestaurante game;
+    private final Sprite imagen;
+    private Texture texture;
     MenuApp menuApp;
     ShapeRenderer shapeRenderer;
 
@@ -25,13 +29,16 @@ public class MenuPrincipal implements Pantalla { // Screen
         menuApp.addButton(20,260,"Restaurant");
         menuApp.addButton(20,220,"Restaurante 2");
         shapeRenderer = new ShapeRenderer();
+        texture = new Texture("Fondo.jpg");
+        imagen = new Sprite(texture);
     }
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(1, 0, 0, 1);
+        Gdx.gl.glClearColor(255, 255, 255, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
+        game.batch.draw(imagen,0,50);
         shapeRenderer.setAutoShapeType(true);
         shapeRenderer.begin();
         shapeRenderer.setColor(0, 1, 0, 1);

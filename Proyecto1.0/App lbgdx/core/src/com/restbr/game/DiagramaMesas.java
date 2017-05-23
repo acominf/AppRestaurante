@@ -50,6 +50,7 @@ public class DiagramaMesas implements Pantalla{
 
     public int interactua(int xm,int ym)
     {
+        int b=0;
         ArrayList <Mesa> mesas = usuarios.get(0).buscarRestaurante("Tortas chidas").mesasRes();
         for(Mesa m : mesas)
         {
@@ -59,10 +60,11 @@ public class DiagramaMesas implements Pantalla{
             if(xMesa-25 <=xm && xMesa+25>=xm && yMesa-25<=ym && yMesa+25>=ym)
             {
                 game.batch.begin();
-                imagen.setPosition(xMesa + 40, yMesa - 130);
+                imagen.setPosition(xMesa + 40, yMesa - 130);//se imprime la imagen del menu de mesa
                 imagen.draw(game.batch);
                 game.batch.end();
-                //se imprime la imagen del menu de mesa
+
+
                 //para el boton de más
                 /*if(ix+25<=xm && ix+75>=xm && iy+95<=ym && iy+145>=ym)//ix, iy siendo las coordenadas donde empieza la imagen
                 {
