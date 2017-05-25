@@ -46,19 +46,6 @@ public class Restaurante
         return nombre;
     }
 
-    public void dibujarMesas(ShapeRenderer shpr, SpriteBatch batch)
-    {
-        BitmapFont bitmapFont = new BitmapFont();
-        bitmapFont.setColor(0,0,1,1);
-        String s;
-        for(Mesa m: mesas)
-        {
-            shpr.circle((float)m.accederX(), (float)m.accederY(), 20);
-            //System.out.println("mesa"+m.accederId()+" x= "+(float)m.accederX()+" y= "+ (float)m.accederY());
-            s=""+m.accederId();
-            bitmapFont.draw(batch, s , (float)m.accederX(), (float)m.accederY() );
-        }
-    }
 
     public void añadirMesas(int cant, int numSecc)
     {

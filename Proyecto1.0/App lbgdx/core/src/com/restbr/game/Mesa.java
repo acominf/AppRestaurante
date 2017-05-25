@@ -26,27 +26,8 @@ public class Mesa
         capacidad=cap;
         identificador=id;
         estaOcupada = false;
-        if(id<=5)
-        {
-            coordY = 50+(75*id);
-            coordX = 50;
-        }
-        else if(id<=10)
-        {
-            coordY = 50+(75*(id-5));
-            coordX = 110;
-        }else if(id<=15)
-        {
-            coordY = 50+(75*(id-10));
-            coordX = 170;
-        }else if(id<=20)
-        {
-            coordY = 50+(75*(id-15));
-            coordX = 230;
-
-        }
-
-
+        coordY = 50+(75*((id%5)+1));
+        coordX = 50+60*((id-1)/5);
 
         //System.out.println(" coordX "+ coordX+ " coordY= "+coordY);
         this.seccion = seccion;
