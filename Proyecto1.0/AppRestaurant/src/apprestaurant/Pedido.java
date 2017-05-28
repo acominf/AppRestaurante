@@ -24,6 +24,11 @@ public class Pedido {
         cantidad = new ArrayList<Integer>();
         estaListo = false;
     }
+    
+    public int numPlatillos()
+    {
+        return orden.size();
+    }
 
     public void agregarPlatillo(Platillo pl, String n,int c)
     {
@@ -69,6 +74,21 @@ public class Pedido {
     public void marcarListo()
     {
         estaListo = true;
+    }
+    
+    public Platillo regresaPlatillo(int i)
+    {
+        return orden.get(i);
+    }
+    
+    public String regresaNota(int i)
+    {
+        return notas.get(i);
+    }
+    
+    public int regresaCantidad(int i)
+    {
+        return cantidad.get(i);
     }
 }
 

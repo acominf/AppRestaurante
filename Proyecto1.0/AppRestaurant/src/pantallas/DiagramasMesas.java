@@ -112,10 +112,9 @@ public class DiagramasMesas extends javax.swing.JFrame {
     private void mesaActionPerformed(java.awt.event.ActionEvent evt) {                                      
         JButton clickeado= (JButton) evt.getSource();
         String s= clickeado.getText();
-        System.out.print(s);
         for(int i = 0; i< mesas.size();i++)
         {
-            if((s+1).equals(""+mesas.get(i).accederId() ))
+            if((s).equals(""+mesas.get(i).accederId() ))
             {
                 EditarPedido editarPedido = new EditarPedido(mesas.get(i).accederPedido(),nomRes);
                 this.setVisible(false);
