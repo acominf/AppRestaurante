@@ -6,6 +6,7 @@
 package apprestaurant;
 
 
+import pantallas.IniciarSesion;
 import pantallas.MenuPrincipal;
 
 /**
@@ -19,9 +20,9 @@ public class AppRestaurant {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        MenuPrincipal menup = new MenuPrincipal();
-        menup.setName("MP");
-        menup.setVisible(true);
+        IniciarSesion iniS = new IniciarSesion();
+        invisble(false);
+        this.setV
     }
     
 }
