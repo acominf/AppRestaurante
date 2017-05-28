@@ -19,10 +19,9 @@ public class AppRestaurant {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        // Ventna de iniciar sesión
         IniciarSesion iniS = new IniciarSesion();
-        invisble(false);
-        this.setV
+        iniS.setVisible(true); //aparece la ventana de inicio de sesión 
     }
     
 }

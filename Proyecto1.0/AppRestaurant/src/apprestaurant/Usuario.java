@@ -5,6 +5,7 @@
  */
 package apprestaurant;
 import java.util.ArrayList;
+import sun.security.util.Password;
 /**
  *
  * @author lucerogarcia
@@ -13,6 +14,7 @@ public class Usuario
 {
     private String nombre;
     private String correoElectronico;
+    private String contraseña;
     private ArrayList<Restaurante> restaurantes;
 
     /**
@@ -20,12 +22,19 @@ public class Usuario
      * @param nom nombre del Usuario
      * @param correo Correo Electronico del Usuario
      */
-    public Usuario(String nom, String correo)
+    public Usuario(String nom, String correo, String cont)
     {
         restaurantes = new ArrayList<Restaurante>();
         nombre=nom;
         correoElectronico = correo;
+        contraseña = cont;
     }
+    
+    public String accedeContraseña()
+    {
+        return contraseña;
+    }
+    
     
     public String accedeNombre()
     {

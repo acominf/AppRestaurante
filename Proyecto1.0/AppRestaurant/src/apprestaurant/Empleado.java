@@ -5,6 +5,8 @@
  */
 package apprestaurant;
 
+import sun.security.util.Password;
+
 /**
  *
  * @author lucerogarcia
@@ -22,9 +24,9 @@ public class Empleado extends Usuario
      * @param correo Correo Electronico del Usuario
      * @param hor
      */
-    public Empleado(String nom, String correo, String hor, String hor1)
+    public Empleado(String nom, String correo, String hor, String hor1, String cont)
     {
-        super(nom, correo);
+        super(nom, correo, cont);
         horInicio = hor;
         horFin = hor1;
     }

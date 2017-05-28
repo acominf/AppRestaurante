@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Mayra Lucero García Ramírez 
+ * Victor Adrian Suaréz Ruiz
  */
 package pantallas;
 
@@ -18,10 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 
-/**
- *
- * @author lucerogarcia
- */
+
 public class MenuRestaurante extends javax.swing.JFrame {
     private Restaurante res;
     /**

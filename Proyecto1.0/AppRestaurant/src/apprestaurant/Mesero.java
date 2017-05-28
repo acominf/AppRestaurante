@@ -6,6 +6,7 @@
 package apprestaurant;
 
 import java.util.ArrayList;
+import sun.security.util.Password;
 
 /**
  *
@@ -15,9 +16,9 @@ public class Mesero extends Empleado
 {
     private ArrayList <Mesa> mesasCorrespondientes;
 
-    public Mesero(String nom, String correo, String hor, String hor1)
+    public Mesero(String nom, String correo, String hor, String hor1, String cont)
     {
-        super(nom,correo,hor, hor1);
+        super(nom,correo,hor, hor1, cont);
         mesasCorrespondientes=new ArrayList<Mesa>();
     }
     /**

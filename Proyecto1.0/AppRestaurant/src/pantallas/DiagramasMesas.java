@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Mayra Lucero García Ramírez 
+ * Victor Adrian Suaréz Ruiz
  */
 package pantallas;
 
@@ -20,18 +19,18 @@ public class DiagramasMesas extends javax.swing.JFrame {
     private boolean edicion;
     private String nomRes;
     /**
-     * Creates new form diagramasMesas
+     * Crea una nueva ventana de diagramasMesas
      */
     public DiagramasMesas(ArrayList <Mesa> mesas, String nom) {
         initComponents();
         nomRes=nom;
-        this.setName("DiagramaMesas");
+        this.setName("DiagramaMesas");//asigna el nombre de la ventana
         botonesMesas = new ArrayList<JButton>();
         this.mesas = mesas;
         for(Mesa m : mesas)
         {
             JButton nuevo = new JButton();
-            nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mesa.png"))); 
+            nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mesa.png"))); //cada mesa tiene este icono
             nuevo.setText(""+m.accederId());
             nuevo.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,8 +125,6 @@ public class DiagramasMesas extends javax.swing.JFrame {
             /*setDragEnabled(true);
             if(this.)*/
         }
-        
-        
     }
     
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed

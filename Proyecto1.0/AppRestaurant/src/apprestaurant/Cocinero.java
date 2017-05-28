@@ -5,6 +5,7 @@
  */
 package apprestaurant;
 import java.util.ArrayList;
+import sun.security.util.Password;
 /**
  *
  * @author lucerogarcia
@@ -21,9 +22,9 @@ public class Cocinero extends Empleado
      * @param correo Correo Electronico del Usuario
      * @param hor Horario del Usuario
      */
-    public Cocinero(String nom, String correo, String hor1, String hor2)
+    public Cocinero(String nom, String correo, String hor1, String hor2, String cont)
     {
-        super(nom, correo, hor1, hor2);
+        super(nom, correo, hor1, hor2, cont);
     }
 
     /**

@@ -1,10 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Mayra Lucero García Ramírez 
+ * Victor Adrian Suaréz Ruiz
  */
 package pantallas;
 
+import java.awt.Frame;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,10 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 
-/**
- *
- * @author lucerogarcia
- */
+
 public class MenuPrincipal extends javax.swing.JFrame {
 
     /**
@@ -41,12 +38,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         bNuevoRestaurante = new javax.swing.JButton();
         busquedaRest = new javax.swing.JTextField();
         restaurante1 = new javax.swing.JButton();
-        bCuenta = new javax.swing.JButton();
-        bConfiguracion = new javax.swing.JButton();
         buscar = new javax.swing.JButton();
         listaRestaurantes = new javax.swing.JScrollPane();
         listaRest = new javax.swing.JList<>();
         ir = new javax.swing.JButton();
+        Cerrar = new javax.swing.JButton();
         Fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -81,12 +77,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(restaurante1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 120, 40));
 
-        bCuenta.setText("Cuenta");
-        getContentPane().add(bCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 120, 40));
-
-        bConfiguracion.setText("Configuración");
-        getContentPane().add(bConfiguracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 120, 40));
-
         buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lupa.png"))); // NOI18N
         buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,6 +101,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(ir, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 370, -1, -1));
+
+        Cerrar.setText("Cerrar Sesión");
+        Cerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CerrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, -1, -1));
 
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Fondo.jpg"))); // NOI18N
         getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 480));
@@ -170,6 +168,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_irActionPerformed
 
+    private void CerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarActionPerformed
+           Frame[] frames = Frame.getFrames();
+            for(int i=0;i<frames.length;i++)
+            {
+                if(frames[i].getName().equals("iniciar"))
+                {
+                    this.setVisible(false);
+                    frames[i].setVisible(true);
+                }
+            }
+    }//GEN-LAST:event_CerrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -206,9 +216,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Cerrar;
     private javax.swing.JLabel Fondo;
-    private javax.swing.JButton bConfiguracion;
-    private javax.swing.JButton bCuenta;
     private javax.swing.JButton bNuevoRestaurante;
     private javax.swing.JButton buscar;
     private javax.swing.JTextField busquedaRest;
