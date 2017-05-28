@@ -3,23 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/lucerogarcia/Documents/cuarto%20semestre/objetos/AppRestaurant/src/apprestaurant/Mesa.java</file>
-            <file>file:/Users/lucerogarcia/Documents/cuarto%20semestre/objetos/AppRestaurant/src/pantallas/Agregar.java</file>
-            <file>file:/Users/lucerogarcia/Documents/cuarto%20semestre/objetos/AppRestaurant/src/pantallas/DiagramasMesas.java</file>
-            <file>file:/Users/lucerogarcia/Documents/cuarto%20semestre/objetos/AppRestaurant/src/apprestaurant/Pedido.java</file>
-            <file>file:/Users/lucerogarcia/Documents/cuarto%20semestre/objetos/AppRestaurant/src/pantallas/EditarMenu.java</file>
-            <file>file:/Users/lucerogarcia/Documents/cuarto%20semestre/objetos/AppRestaurant/src/pantallas/EditarPersonal.java</file>
-            <file>file:/Users/lucerogarcia/Documents/cuarto%20semestre/objetos/AppRestaurant/src/pantallas/MenuRestaurante.java</file>
-            <file>file:/Users/lucerogarcia/Documents/cuarto%20semestre/objetos/AppRestaurant/src/apprestaurant/Restaurante.java</file>
-            <file>file:/Users/lucerogarcia/Documents/cuarto%20semestre/objetos/AppRestaurant/src/imagenes/mesa.png</file>
-            <file>file:/Users/lucerogarcia/Documents/cuarto%20semestre/objetos/AppRestaurant/src/pantallas/Quitar.java</file>
-            <file>file:/Users/lucerogarcia/Documents/cuarto%20semestre/objetos/AppRestaurant/src/pantallas/NuevoUsuario.java</file>
-            <file>file:/Users/lucerogarcia/Documents/cuarto%20semestre/objetos/AppRestaurant/src/pantallas/EditarPedido.java</file>
-            <file>file:/Users/lucerogarcia/Documents/cuarto%20semestre/objetos/AppRestaurant/src/apprestaurant/Platillo.java</file>
-            <file>file:/Users/lucerogarcia/Documents/cuarto%20semestre/objetos/AppRestaurant/src/pantallas/VerPedido.java</file>
-            <file>file:/Users/lucerogarcia/Documents/cuarto%20semestre/objetos/AppRestaurant/src/apprestaurant/Menu.java</file>
-            <file>file:/Users/lucerogarcia/Documents/cuarto%20semestre/objetos/AppRestaurant/src/pantallas/NuevoRestaurante.java</file>
-            <file>file:/Users/lucerogarcia/Documents/cuarto%20semestre/objetos/AppRestaurant/src/imagenes/minus.png</file>
+            <file>file:/Users/lucerogarcia/Documents/cuarto%20semestre/objetos/AppRestaurante/Proyecto1.0/AppRestaurant/src/pantallas/MenuPrincipal.java</file>
+            <file>file:/Users/lucerogarcia/Documents/cuarto%20semestre/objetos/AppRestaurante/Proyecto1.0/AppRestaurant/src/pantallas/EditarPersonal.java</file>
+            <file>file:/Users/lucerogarcia/Documents/cuarto%20semestre/objetos/AppRestaurante/Proyecto1.0/AppRestaurant/src/pantallas/Agregar.java</file>
+            <file>file:/Users/lucerogarcia/Documents/cuarto%20semestre/objetos/AppRestaurante/Proyecto1.0/AppRestaurant/src/apprestaurant/AppRestaurant.java</file>
+            <file>file:/Users/lucerogarcia/Documents/cuarto%20semestre/objetos/AppRestaurante/Proyecto1.0/AppRestaurant/src/pantallas/NuevoRestaurante.java</file>
+            <file>file:/Users/lucerogarcia/Documents/cuarto%20semestre/objetos/AppRestaurante/Proyecto1.0/AppRestaurant/src/pantallas/EditarPedido.java</file>
+            <file>file:/Users/lucerogarcia/Documents/cuarto%20semestre/objetos/AppRestaurante/Proyecto1.0/AppRestaurant/src/pantallas/DiagramasMesas.java</file>
+            <file>file:/Users/lucerogarcia/Documents/cuarto%20semestre/objetos/AppRestaurante/Proyecto1.0/AppRestaurant/src/pantallas/MenuRestaurante.java</file>
+            <file>file:/Users/lucerogarcia/Documents/cuarto%20semestre/objetos/AppRestaurante/Proyecto1.0/AppRestaurant/src/pantallas/MenuCocinero.java</file>
         </group>
     </open-files>
 </project-private>

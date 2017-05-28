@@ -22,8 +22,6 @@ public class AppRestaurant {
         MenuPrincipal menup = new MenuPrincipal();
         menup.setName("MP");
         menup.setVisible(true);
-        
-        
     }
     
 }
