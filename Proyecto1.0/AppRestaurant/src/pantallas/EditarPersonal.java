@@ -34,14 +34,21 @@ public class EditarPersonal extends javax.swing.JFrame {
     /**
      * Creates new form EditarEmpleados
      */
-    public EditarPersonal(ArrayList<Empleado> empleados, String nomRes) {
+    public EditarPersonal(ArrayList<Empleado> empleadosIn, String nomRes) {
         initComponents();
-        this.empleados =empleados;
-        DefaultListModel modelo = new DefaultListModel();
-        modelo = (DefaultListModel) (this.jListEmpleados.getModel());
-        for(int i = 0; i<modelo.getSize(); i++)
+        if(empleadosIn == null)
         {
-            modelo.add(i, ((Empleado)empleados.get(i)).accedeNombre());
+           empleados = new ArrayList<Empleado>();
+        }
+        else
+        {
+            empleados =empleadosIn;
+            DefaultListModel modelo = new DefaultListModel();
+            modelo = (DefaultListModel) (this.jListEmpleados.getModel());
+            for(int i = 0; i<modelo.getSize(); i++)
+            {
+                modelo.add(i, ((Empleado)empleados.get(i)).accedeNombre());
+            }
         }
         this.nomRes=nomRes;
         lcorreo.setVisible(false);
@@ -366,7 +373,7 @@ public class EditarPersonal extends javax.swing.JFrame {
         cont = new String(contraseña.getPassword());
         confi = new String(confirmarContra.getPassword());
         Empleado nuevo;
-        if(cont == confi  &&  ""!=nom && ""!=corr &&  cont != "" && confi  != "" )
+        if(cont.equals(confi)  &&  ""!=nom && ""!=corr &&  cont != "" && confi  != "" )
         {
             if(s.equals("Cocinero"))
             {
@@ -451,7 +458,6 @@ public class EditarPersonal extends javax.swing.JFrame {
        
         FileWriter fichero = null;
         BufferedWriter out = null;   
-        
         if(modificacion)
         {
             try {

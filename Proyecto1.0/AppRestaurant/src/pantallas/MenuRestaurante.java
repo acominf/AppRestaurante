@@ -388,7 +388,6 @@ public class MenuRestaurante extends javax.swing.JFrame {
 
     private void bMenuChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMenuChefActionPerformed
         // TODO add your handling code here:
-        
         MenuCocinero menuChef = new MenuCocinero(res.regresaPedidos());
         this.setVisible(false);
         menuChef.setVisible(true);

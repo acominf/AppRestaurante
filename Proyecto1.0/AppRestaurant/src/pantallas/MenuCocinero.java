@@ -26,13 +26,16 @@ public class MenuCocinero extends javax.swing.JFrame {
         }
         else
         {
+            System.out.println("numero de pedidos: "+p.size());
             pedidos = p;
-            
             DefaultListModel modelo;
             modelo = (DefaultListModel) (this.listaPedidos.getModel());
             for(int i=0; i<pedidos.size();i++)
             {
-                modelo.add(i,"Pedido"+i+1);   
+                modelo.add(i,"Pedido"+(i+1)); 
+                Pedido pe = pedidos.get(i);
+                System.out.println(pe.regresaPlatillo(i).accedeNombre());
+                
             }
         }
     }
@@ -201,9 +204,11 @@ public class MenuCocinero extends javax.swing.JFrame {
             DefaultListModel modelo = (DefaultListModel) listaPlatillos.getModel();
             int i= listaPedidos.getSelectedIndex();
             Pedido p = pedidos.get(i);
+            System.out.println("Entrando platillos");
             for(int j = 0; j< p.numPlatillos() ;j++ )
             {
                 Platillo plat = p.regresaPlatillo(i);
+                System.out.println(plat.accedeNombre());
                 modelo.add(i, plat.accedeNombre());
             }
             listaPedidos.setSelectedIndex(0);

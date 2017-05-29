@@ -143,7 +143,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         DefaultListModel modelo = new DefaultListModel();
         for(Restaurante r: rests)
         {
-            System.out.println("   "+r.accedeNombre());
             modelo.addElement(r.accedeNombre());
         }
         

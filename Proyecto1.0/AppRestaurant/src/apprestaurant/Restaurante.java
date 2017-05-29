@@ -47,7 +47,12 @@ public class Restaurante implements Serializable
         {
             Pedido p;
             p=mesas.get(i).accederPedido();
-            pedidos.add(p);
+            if(p!=null)
+            {
+                pedidos.add(p);
+                
+            }
+            
         }
         return pedidos;
     }

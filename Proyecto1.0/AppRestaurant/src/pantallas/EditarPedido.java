@@ -297,7 +297,7 @@ public class EditarPedido extends javax.swing.JFrame {
     }//GEN-LAST:event_bMenosActionPerformed
 
     private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
-        
+       System.out.println(""+pedido.numPlatillos());
         Frame[] frames = Frame.getFrames();
         for(int i=0;i<frames.length;i++)
         {
