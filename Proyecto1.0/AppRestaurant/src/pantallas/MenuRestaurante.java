@@ -22,8 +22,10 @@ import javax.swing.DefaultListModel;
 
 
 public class MenuRestaurante extends javax.swing.JFrame {
-    private ArrayList<Usuario> usuarios;
+    ArrayList<Usuario> usuarios;
     private Restaurante res;
+    private String correo;
+    private String nomAnterior;
     /**
      * Creates new form MenuRestaurante
      */
@@ -31,45 +33,17 @@ public class MenuRestaurante extends javax.swing.JFrame {
         initComponents();
         this.setName("menuRes");
         
+        correo = correoUsuario;
         usuarios = Utilidad.leerUsuarios();
-        Usuario actual = Utilidad.buscarUsuario(correoUsuario);
-        for(int i = 0 ; i<actual.accedeRestaurantes().size(); i++)//buscar si existe en el arraylist
-        {
-            res = (actual.accedeRestaurantes()).get(i);
-            if(res.accedeNombre().equals(nomRes))
-                break;
-        }
-        /*
-        File archivo = new File (nomRes+".txt");
-        FileReader fr;
-        String nom = "";
-        String tel = "";
-        String dir = "";
-        String h1 = "";
-        String h2 = "";
-        String linea = "";
-        try {
-            fr = new FileReader (archivo);
-            BufferedReader br = new BufferedReader(fr);
-            nom = br.readLine();
-            tel = br.readLine();
-            dir = br.readLine();
-            h1 = br.readLine();
-            h2 = br.readLine();
-            res = new Restaurante(nom,dir,tel,h1,h2);
-            br.close();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        res = Utilidad.buscarRestaurante(usuarios, correoUsuario, nomRes);
+        nomAnterior = "";
         
         titulo.setText(res.accedeNombre());
         nombre.setText(res.accedeNombre());
         direccion.setText(res.accedeDireccion());
         telefono.setText(res.accedeTelefono());
         horIni.setText(res.accedeHi());
-        horFin.setText(res.accedeHf());
+        horFin.setText(res.accedeHf());  
         
         nombre.setVisible(false); 
         direccion.setVisible(false);
@@ -83,7 +57,6 @@ public class MenuRestaurante extends javax.swing.JFrame {
         jLabel6.setVisible(false);
         bAceptar.setVisible(false);
         bCancelar.setVisible(false);
-        
     }
 
     /**
@@ -292,7 +265,7 @@ public class MenuRestaurante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void editInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editInfoActionPerformed
-        
+        nomAnterior = nombre.getText();
         nombre.setVisible(true);
         direccion.setVisible(true);
         telefono.setVisible(true);
@@ -338,35 +311,23 @@ public class MenuRestaurante extends javax.swing.JFrame {
     }//GEN-LAST:event_bCancelarActionPerformed
 
     private void bAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAceptarActionPerformed
-        FileWriter fichero = null;
-        BufferedWriter out = null;   
+        usuarios = Utilidad.leerUsuarios();
+        
         String nom = nombre.getText();
         String tel = telefono.getText();
         String dir = direccion.getText();
         String h1 = horFin.getText();
         String h2 = horIni.getText();
         
-        res = new Restaurante(nom, dir, tel, h1, h2);
+        res = Utilidad.buscarRestaurante(usuarios, correo, nom);
+        
+        res.modificarNombre(nom);
+        res.modificarDireccion(tel);
+        res.modificarTelefono(dir);
+        res.modificarHi(h1);
+        res.modificarHf(h2);
+        
         Utilidad.guardarUsuarios(usuarios);
-        /*
-        try {
-            //fichero = new FileWriter(propietario,true);//escribiendo en el archivo del usuario
-            //out.write(nom);
-            fichero = new FileWriter(nom+".txt"); //escribir el archivo del restaurante
-            out=new BufferedWriter(fichero);
-            out.write(nom+"\n");
-            out.write(tel+"\n");
-            out.write(dir+"\n");
-            out.write(h1+"\n");
-            out.write(h2+"\n");
-            out.close();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(NuevoRestaurante.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(NuevoRestaurante.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-        
-        
         
         nombre.setVisible(false);
         direccion.setVisible(false);

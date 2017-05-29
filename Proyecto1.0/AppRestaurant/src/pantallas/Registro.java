@@ -26,12 +26,9 @@ public class Registro extends javax.swing.JFrame {
      * Creates new form Registro
      * @param usu Lista de usuarios 
      */
-    public Registro(ArrayList <Usuario> usu) {
+    public Registro() {
         initComponents();
-        if(usu!=null)
-            usuarios = usu;
-        else
-            usuarios = new ArrayList <Usuario>();
+        usuarios = Utilidad.leerUsuarios();
         Completado.setVisible(false);
     }
 
@@ -213,7 +210,8 @@ public class Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_contraseñaActionPerformed
 
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
-         boolean correcto;
+        boolean correcto;
+        usuarios = Utilidad.leerUsuarios();
         String c1, c2;
         c1 = new String(contraseña.getPassword());
         c2 = new String(confirmarContraseña.getPassword());

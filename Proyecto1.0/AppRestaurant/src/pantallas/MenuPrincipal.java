@@ -13,19 +13,23 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 
 
 public class MenuPrincipal extends javax.swing.JFrame {
+    String correo;
     Usuario actual;
     /**
      * Creates new form MenuPrincipal
      */
-    public MenuPrincipal(Usuario actual) {
+    public MenuPrincipal(String actual) {
         initComponents();
-        this.actual = actual;
+        ArrayList<Usuario> usuarios = Utilidad.leerUsuarios();
+        correo = actual;
+        this.actual = Utilidad.buscarUsuario(usuarios, actual);
         listaRestaurantes.setVisible(false);
         ir.setVisible(false);
         this.setName("MP");
@@ -127,41 +131,23 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void bNuevoRestauranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevoRestauranteActionPerformed
         listaRestaurantes.setVisible(false);
         ir.setVisible(false);
-        NuevoRestaurante nuevoR=new NuevoRestaurante(actual.accedeCorreo());
+        NuevoRestaurante nuevoR = new NuevoRestaurante(correo);
         this.setVisible(false);
         nuevoR.setVisible(true);
     }//GEN-LAST:event_bNuevoRestauranteActionPerformed
 
     private void restaurante1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restaurante1ActionPerformed
-        // TODO add your handling code here:
-        /*File archivo = new File ("Pablo.txt");
-        FileReader fr;
-        String linea;
-        DefaultListModel modelo = new DefaultListModel();
-        try {
-            fr = new FileReader (archivo);
-            BufferedReader br = new BufferedReader(fr);
-            while((linea = br.readLine())!=null)
-            {
-                modelo.addElement(linea);
-            }
-            
-            br.close();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        listaRest.setModel(modelo);*/
-        actual = Utilidad.buscarUsuario(actual.accedeCorreo());
-        DefaultListModel modelo = new DefaultListModel();
-        for( Restaurante r: actual.accedeRestaurantes() )
-        {
-            modelo.addElement(r.accedeNombre());
-            //System.out.println(r.accedeNombre());
-        }
-        listaRest.setModel(modelo);
+        ArrayList<Restaurante> rests = actual.accedeRestaurantes();
         
+        //System.out.println(actual.accedeCorreo());
+        DefaultListModel modelo = new DefaultListModel();
+        for(Restaurante r: rests)
+        {
+            //System.out.println("   "+r.accedeNombre());
+            modelo.addElement(r.accedeNombre());
+        }
+        
+        listaRest.setModel(modelo);
         listaRestaurantes.setVisible(true);
         ir.setVisible(true);
     }//GEN-LAST:event_restaurante1ActionPerformed
@@ -176,7 +162,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             int i= listaRest.getSelectedIndex();
             DefaultListModel modelo = (DefaultListModel) listaRest.getModel();
             String s = (String) modelo.getElementAt(i);
-            MenuRestaurante menuRes = new MenuRestaurante(actual.accedeCorreo(), s); 
+            MenuRestaurante menuRes = new MenuRestaurante(correo, s); 
             
             this.setVisible(false);
             menuRes.setVisible(true);

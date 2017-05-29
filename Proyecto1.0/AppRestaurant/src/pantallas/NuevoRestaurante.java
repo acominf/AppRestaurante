@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 
 
 public class NuevoRestaurante extends javax.swing.JFrame {
+    ArrayList<Usuario> usuarios;
     private String correoPropietario;
     /**
      * Creates new form NuevoRestaurante
@@ -133,10 +134,6 @@ public class NuevoRestaurante extends javax.swing.JFrame {
     }//GEN-LAST:event_bCancelarActionPerformed
 
     private void bAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAceptarActionPerformed
-        Frame[] frames = Frame.getFrames();
-        
-        FileWriter fichero = null;
-        BufferedWriter out = null;   
         String nom = nombre.getText();
         String tel = telefono.getText();
         String dir = direccion.getText();
@@ -144,7 +141,7 @@ public class NuevoRestaurante extends javax.swing.JFrame {
         String h2 = horIni.getText();
         Restaurante nuevo = new Restaurante(nom, tel, dir, h1, h2);
         
-        ArrayList<Usuario> usuarios = Utilidad.leerUsuarios();
+        usuarios = Utilidad.leerUsuarios();
         Usuario actual = null;
         for(int i =0 ; i<usuarios.size();i++)//buscar si existe en el arraylist
         {
@@ -152,29 +149,11 @@ public class NuevoRestaurante extends javax.swing.JFrame {
             if(actual.accedeCorreo().equals(correoPropietario))//checar info
             {
                 actual.crearRestaurante(nuevo);
-                System.out.println(nuevo.accedeNombre());
             }
         }
         Utilidad.guardarUsuarios(usuarios);
         
-        /*
-        try {
-            //fichero = new FileWriter(propietario,true);//escribiendo en el archivo del usuario
-            //out.write(nom);
-            fichero = new FileWriter(nom+".txt"); //escribir el archivo del restaurante
-            out=new BufferedWriter(fichero);
-            out.write(nom+"\n");
-            out.write(tel+"\n");
-            out.write(dir+"\n");
-            out.write(h1+"\n");
-            out.write(h2+"\n");
-            out.close();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(NuevoRestaurante.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(NuevoRestaurante.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-        
+        Frame[] frames = Frame.getFrames(); 
         for(int i=0;i<frames.length;i++)
         {
             if(frames[i].getName().equals("MP"))

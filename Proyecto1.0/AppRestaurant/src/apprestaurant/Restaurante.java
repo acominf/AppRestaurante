@@ -84,5 +84,26 @@ public class Restaurante implements Serializable
         return horarioFin;
     }
 
+    public void modificarNombre(String nom) {
+        nombre = nom;
+    }
+
+    public void modificarDireccion(String tel) {
+        telefono = tel;
+    }
+
+    public void modificarTelefono(String dir) {
+        direccion = dir;
+    }
+
+    public void modificarHi(String h1) {
+        horarioInicio = h1;
+    }
+
+    public void modificarHf(String h2) {
+        horarioFin = h2;
+    }
+
+
 }
 

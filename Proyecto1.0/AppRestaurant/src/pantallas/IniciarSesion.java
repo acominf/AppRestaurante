@@ -155,26 +155,26 @@ public class IniciarSesion extends javax.swing.JFrame {
         String c, cont;
         boolean correcto = false;
         Usuario actual = null;
-        
+        usuarios = Utilidad.leerUsuarios();
         c = correo.getText();
         cont = new String(contraseña.getPassword());
-        
-        //System.out.println("Accediendo... correo: " + c+" password: "+ cont);
         for(int i =0 ; i<usuarios.size();i++)//buscar si existe en el arraylist
         {
             actual = usuarios.get(i);
+            /*System.out.println("correo: " + actual.accedeCorreo()+" Esc correo: "+ c);
+            System.out.println("password: " + actual.accedeContraseña()+" Esc password: "+ cont);*/
             if(actual.accedeCorreo().equals(c) && actual.accedeContraseña().equals(cont))//checar info
             {
                 correcto = true;
+                break;
             }
         }
-        
         if(correcto)
         {
             incorrecto.setVisible(false);
             correo.setText("");
             contraseña.setText("");
-            MenuPrincipal menuP = new MenuPrincipal(actual);
+            MenuPrincipal menuP = new MenuPrincipal(actual.accedeCorreo());
             this.setVisible(false);
             menuP.setVisible(true);
         }
@@ -193,7 +193,7 @@ public class IniciarSesion extends javax.swing.JFrame {
         correo.setText("");
         contraseña.setText("");
         usuarios = Utilidad.leerUsuarios();
-        Registro reg = new Registro(usuarios); 
+        Registro reg = new Registro();
         this.setVisible(false);
         reg.setVisible(true);
     }//GEN-LAST:event_registroActionPerformed
