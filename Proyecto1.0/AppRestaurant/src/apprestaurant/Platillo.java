@@ -17,6 +17,7 @@ public class Platillo implements Serializable
     private String tipo;
     private float costo;
     private String descripcion;
+    private boolean listo;
     //considerar variable para foto
 
     public Platillo(String nom, String t, float c, String d) {
@@ -24,9 +25,18 @@ public class Platillo implements Serializable
             tipo = t;
             costo = c;
             descripcion = d;
+            listo = false;
     }
 
+    public void marcarListo()
+    {
+        listo=true;
+    }
   
+    public boolean regresaListo()
+    {
+        return listo;
+    }
     public String accederNombre()
     {
         return  nombre;

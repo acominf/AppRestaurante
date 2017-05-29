@@ -143,7 +143,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         DefaultListModel modelo = new DefaultListModel();
         for(Restaurante r: rests)
         {
-            //System.out.println("   "+r.accedeNombre());
+            System.out.println("   "+r.accedeNombre());
             modelo.addElement(r.accedeNombre());
         }
         
@@ -154,6 +154,26 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         // TODO add your handling code here:
+        String nomRes  = busquedaRest.getText();
+        ArrayList<Restaurante> res = new  ArrayList<Restaurante>();
+        ArrayList<Usuario> usuarios = Utilidad.leerUsuarios();
+        
+        for(int i = 0; i<usuarios.size();i++)
+        {
+            if( usuarios.get(i).buscarRestaurante(nomRes) != null)
+            {
+                res.add(usuarios.get(i).buscarRestaurante(nomRes));
+            }
+        }
+        DefaultListModel modelo = new DefaultListModel();
+        for(Restaurante r: res)
+        {
+            modelo.addElement(r.accedeNombre());
+        }
+        
+        listaRest.setModel(modelo);
+        listaRestaurantes.setVisible(true);
+        ir.setVisible(true);
     }//GEN-LAST:event_buscarActionPerformed
 
     private void irActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irActionPerformed
@@ -162,7 +182,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             int i= listaRest.getSelectedIndex();
             DefaultListModel modelo = (DefaultListModel) listaRest.getModel();
             String s = (String) modelo.getElementAt(i);
-            MenuRestaurante menuRes = new MenuRestaurante(correo, s); 
+            MenuRestaurante menuRes = new MenuRestaurante(actual.accedeCorreo(), actual.accedeNomRestaurante(i)); 
             
             this.setVisible(false);
             menuRes.setVisible(true);

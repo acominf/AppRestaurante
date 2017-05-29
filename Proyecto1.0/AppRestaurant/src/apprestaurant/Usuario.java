@@ -36,6 +36,10 @@ public class Usuario implements Serializable
         return contraseña;
     }
     
+    public String accedeNomRestaurante(int i)
+    {
+        return restaurantes.get(i).accedeNombre();
+    }
     
     public String accedeNombre()
     {
@@ -63,11 +67,11 @@ public class Usuario implements Serializable
 
     public Restaurante buscarRestaurante(String nombre)
     {
-        for(Restaurante r : restaurantes)
+        for(int i=0;i<restaurantes.size();i++)
         {
-            if(r.accedeNombre()== nombre)
+            if(restaurantes.get(i).accedeNombre().equals(nombre))
             {
-                return r;
+                return restaurantes.get(i);
             }
         }
         return null;

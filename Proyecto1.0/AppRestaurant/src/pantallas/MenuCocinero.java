@@ -7,6 +7,7 @@ package pantallas;
 import apprestaurant.Empleado;
 import apprestaurant.Pedido;
 import apprestaurant.Platillo;
+import java.awt.Frame;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
@@ -19,12 +20,20 @@ public class MenuCocinero extends javax.swing.JFrame {
      */
     public MenuCocinero(ArrayList<Pedido> p) {
         initComponents();
-        pedidos = p;
-        DefaultListModel modelo;
-        modelo = (DefaultListModel) (this.listaPedidos.getModel());
-        for(int i=0; i<pedidos.size();i++)
+        if(p==null)
         {
-            modelo.add(i,"Pedido"+i+1);   
+            pedidos = new ArrayList<Pedido>();
+        }
+        else
+        {
+            pedidos = p;
+            
+            DefaultListModel modelo;
+            modelo = (DefaultListModel) (this.listaPedidos.getModel());
+            for(int i=0; i<pedidos.size();i++)
+            {
+                modelo.add(i,"Pedido"+i+1);   
+            }
         }
     }
 
@@ -55,8 +64,10 @@ public class MenuCocinero extends javax.swing.JFrame {
         jNomPlatillo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         bVer = new javax.swing.JButton();
+        Regresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(650, 480));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelCocina.setFont(new java.awt.Font("Sinhala Sangam MN", 3, 24)); // NOI18N
@@ -86,7 +97,7 @@ public class MenuCocinero extends javax.swing.JFrame {
                 bListoActionPerformed(evt);
             }
         });
-        getContentPane().add(bListo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 310, 100));
+        getContentPane().add(bListo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, 310, 100));
 
         listaPedidos.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -144,6 +155,14 @@ public class MenuCocinero extends javax.swing.JFrame {
         });
         getContentPane().add(bVer, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 200, 30));
 
+        Regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/1496006996_return-back-redo-arrow.png"))); // NOI18N
+        Regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegresarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 420, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -158,7 +177,12 @@ public class MenuCocinero extends javax.swing.JFrame {
                 int i= listaPlatillos.getSelectedIndex();//el platillo seleccionado
                 DefaultListModel modelo = (DefaultListModel) listaPlatillos.getModel(); 
                 modelo.removeElementAt(i);//quita el platillo seleccionado de la lista
-                aux.eliminarPlatillo(i);//elimina el platillo del arraylist
+                aux.PlatillomarcarListo(i); //marca como listo el platillo del arraylist
+            }
+            if(aux.checarListo())
+            {
+                modelo0.removeElementAt(a);
+                aux.marcarListo();
             }
         }
     }//GEN-LAST:event_bListoActionPerformed
@@ -189,6 +213,18 @@ public class MenuCocinero extends javax.swing.JFrame {
             jNotas.setText(p.regresaNota(0));
         }
     }//GEN-LAST:event_bVerActionPerformed
+
+    private void RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarActionPerformed
+        Frame[] frames = Frame.getFrames();
+        for(int i=0;i<frames.length;i++)
+        {
+            if(frames[i].getName().equals("menuRes"))
+            {
+                this.setVisible(false);
+                frames[i].setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_RegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,6 +262,7 @@ public class MenuCocinero extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Regresar;
     private javax.swing.JButton bListo;
     private javax.swing.JButton bVer;
     private javax.swing.JLabel img1;

@@ -48,6 +48,18 @@ public class Pedido implements Serializable
         cantidad.remove(i);
         orden.remove(i);
     }
+    
+    public boolean checarListo()
+    {
+        for(int i=0;i<orden.size();i++)
+        {
+            if(!orden.get(i).regresaListo())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 
     public int buscarIndice(String nom)
     {
@@ -77,6 +89,12 @@ public class Pedido implements Serializable
     {
         estaListo = true;
     }
+    
+    public void PlatillomarcarListo(int i)
+    {
+        orden.get(i).marcarListo();
+    }
+    
     
     public Platillo regresaPlatillo(int i)
     {

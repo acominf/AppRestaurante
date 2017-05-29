@@ -39,7 +39,19 @@ public class Restaurante implements Serializable
     {
         return mesas;
     }
-
+    
+    public ArrayList<Pedido> regresaPedidos()
+    {
+        ArrayList <Pedido> pedidos = new ArrayList <Pedido>();
+        for(int i = 0 ; i<mesas.size();i++)
+        {
+            Pedido p;
+            p=mesas.get(i).accederPedido();
+            pedidos.add(p);
+        }
+        return pedidos;
+    }
+    
     public void agregarEmpleado(Empleado nuevo)
     {
         empleados.add(nuevo);
