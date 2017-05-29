@@ -384,7 +384,7 @@ public class MenuRestaurante extends javax.swing.JFrame {
     }//GEN-LAST:event_bAceptarActionPerformed
 
     private void diagramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diagramaActionPerformed
-        res.añadirMesas(15);
+        
         DiagramasMesas d = new DiagramasMesas(res.mesasRes(),res.accedeNombre());
         this.setVisible(false);
         d.setVisible(true);

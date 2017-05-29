@@ -41,6 +41,15 @@ public class EditarMenu extends javax.swing.JFrame {
         bAceptar.setVisible(false);
         modif = false;
         verIndice = -1;
+        DefaultListModel modelo = (DefaultListModel) Lista.getModel();
+        System.out.println("tamaño= " +  menu.regresaPlatillos().size());
+        for(int i=0; i < menu.regresaPlatillos().size() ;i++)
+        {
+            System.out.println(menu.regresaPlatillo(i).accedeNombre());
+            modelo.add(i, menu.regresaPlatillo(i).accedeNombre());
+        }
+        Lista.setModel(modelo);
+        
     }
 
     /**
