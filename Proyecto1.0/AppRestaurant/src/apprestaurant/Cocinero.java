@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package apprestaurant;
+import java.io.Serializable;
 import java.util.ArrayList;
 import sun.security.util.Password;
 /**
@@ -11,7 +12,7 @@ import sun.security.util.Password;
  * @author lucerogarcia
  */
 
-public class Cocinero extends Empleado
+public class Cocinero extends Empleado implements Serializable
 {
     private ArrayList<Pedido> pedidos;
 
@@ -20,7 +21,9 @@ public class Cocinero extends Empleado
      *
      * @param nom    nombre del Usuario
      * @param correo Correo Electronico del Usuario
-     * @param hor Horario del Usuario
+     * @param hor1 Horario de entradad 
+     * @param hor2 Horario de salida
+     * @param cont Contraseña
      */
     public Cocinero(String nom, String correo, String hor1, String hor2, String cont)
     {

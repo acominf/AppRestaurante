@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package apprestaurant;
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
@@ -11,7 +12,7 @@ import javax.swing.JList;
  *
  * @author lucerogarcia
  */
-public class Restaurante
+public class Restaurante implements Serializable
 {
     private String nombre;
     private String direccion;
@@ -44,7 +45,7 @@ public class Restaurante
         empleados.add(nuevo);
     }
 
-    public String regresaNombre()
+    public String accedeNombre()
     {
         return nombre;
     }
@@ -65,6 +66,22 @@ public class Restaurante
 
     public Menu regresaMenu() {
         return menu;
+    }
+
+    public String accedeDireccion() {
+        return direccion;
+    }
+
+    public String accedeTelefono() {
+        return telefono;
+    }
+
+    public String accedeHi() {
+        return horarioInicio;
+    }
+
+    public String accedeHf() {
+        return horarioFin;
     }
 
 }

@@ -5,7 +5,9 @@
  */
 package apprestaurant;
 
-public class Mesa
+import java.io.Serializable;
+
+public class Mesa implements Serializable
 {
     private Pedido pedido;
     private int capacidad;

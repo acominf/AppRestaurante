@@ -5,6 +5,7 @@
  */
 package apprestaurant;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import sun.security.util.Password;
 
@@ -12,7 +13,7 @@ import sun.security.util.Password;
  *
  * @author lucerogarcia
  */
-public class Mesero extends Empleado
+public class Mesero extends Empleado implements Serializable
 {
     private ArrayList <Mesa> mesasCorrespondientes;
 

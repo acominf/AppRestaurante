@@ -4,6 +4,9 @@
  */
 package pantallas;
 
+import apprestaurant.Restaurante;
+import apprestaurant.Usuario;
+import apprestaurant.Utilidad;
 import java.awt.Frame;
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,14 +19,16 @@ import javax.swing.DefaultListModel;
 
 
 public class MenuPrincipal extends javax.swing.JFrame {
-
+    Usuario actual;
     /**
      * Creates new form MenuPrincipal
      */
-    public MenuPrincipal() {
+    public MenuPrincipal(Usuario actual) {
         initComponents();
+        this.actual = actual;
         listaRestaurantes.setVisible(false);
         ir.setVisible(false);
+        this.setName("MP");
     }
 
     /**
@@ -49,7 +54,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(640, 480));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        bNuevoRestaurante.setBackground(new java.awt.Color(102, 102, 255));
         bNuevoRestaurante.setText("Nuevo Restaurante");
         bNuevoRestaurante.setActionCommand("NuevoRestaurante");
         bNuevoRestaurante.addActionListener(new java.awt.event.ActionListener() {
@@ -57,7 +61,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 bNuevoRestauranteActionPerformed(evt);
             }
         });
-        getContentPane().add(bNuevoRestaurante, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 114, 130, 40));
+        getContentPane().add(bNuevoRestaurante, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 140, 40));
 
         busquedaRest.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         busquedaRest.setText("Restaurante");
@@ -75,7 +79,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 restaurante1ActionPerformed(evt);
             }
         });
-        getContentPane().add(restaurante1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 120, 40));
+        getContentPane().add(restaurante1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 140, 40));
 
         buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lupa.png"))); // NOI18N
         buscar.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +90,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 70, 29));
 
         listaRest.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = {};
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -121,14 +125,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_busquedaRestActionPerformed
 
     private void bNuevoRestauranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevoRestauranteActionPerformed
-        // TODO add your handling code here:
-        NuevoRestaurante nuevoR=new NuevoRestaurante();
+        listaRestaurantes.setVisible(false);
+        ir.setVisible(false);
+        NuevoRestaurante nuevoR=new NuevoRestaurante(actual.accedeCorreo());
+        this.setVisible(false);
         nuevoR.setVisible(true);
     }//GEN-LAST:event_bNuevoRestauranteActionPerformed
 
     private void restaurante1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restaurante1ActionPerformed
         // TODO add your handling code here:
-        File archivo = new File ("Pablo.txt");
+        /*File archivo = new File ("Pablo.txt");
         FileReader fr;
         String linea;
         DefaultListModel modelo = new DefaultListModel();
@@ -146,7 +152,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
+        listaRest.setModel(modelo);*/
+        actual = Utilidad.buscarUsuario(actual.accedeCorreo());
+        DefaultListModel modelo = new DefaultListModel();
+        for( Restaurante r: actual.accedeRestaurantes() )
+        {
+            modelo.addElement(r.accedeNombre());
+            //System.out.println(r.accedeNombre());
+        }
         listaRest.setModel(modelo);
+        
         listaRestaurantes.setVisible(true);
         ir.setVisible(true);
     }//GEN-LAST:event_restaurante1ActionPerformed
@@ -161,23 +176,26 @@ public class MenuPrincipal extends javax.swing.JFrame {
             int i= listaRest.getSelectedIndex();
             DefaultListModel modelo = (DefaultListModel) listaRest.getModel();
             String s = (String) modelo.getElementAt(i);
-            MenuRestaurante menuRes = new MenuRestaurante(s); 
+            MenuRestaurante menuRes = new MenuRestaurante(actual.accedeCorreo(), s); 
             
             this.setVisible(false);
             menuRes.setVisible(true);
+            
+            listaRestaurantes.setVisible(false);
+            ir.setVisible(false);
         }
     }//GEN-LAST:event_irActionPerformed
 
     private void CerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarActionPerformed
-           Frame[] frames = Frame.getFrames();
-            for(int i=0;i<frames.length;i++)
+        Frame[] frames = Frame.getFrames();
+        for(int i=0;i<frames.length;i++)
+        {
+            if(frames[i].getName().equals("iniciar"))
             {
-                if(frames[i].getName().equals("iniciar"))
-                {
-                    this.setVisible(false);
-                    frames[i].setVisible(true);
-                }
+                this.setVisible(false);
+                frames[i].setVisible(true);
             }
+        }
     }//GEN-LAST:event_CerrarActionPerformed
 
     /**
@@ -210,7 +228,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuPrincipal().setVisible(true);
+                //new MenuPrincipal().setVisible(true);
             }
         });
     }

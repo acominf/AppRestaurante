@@ -5,6 +5,7 @@
  */
 package apprestaurant;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -12,7 +13,8 @@ import java.util.Iterator;
  *
  * @author lucerogarcia
  */
-public class Menu {
+public class Menu implements Serializable
+{
     private ArrayList<Platillo> menu;
 
     public Menu()

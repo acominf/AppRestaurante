@@ -5,8 +5,16 @@
 package pantallas;
 
 import apprestaurant.Usuario;
+import apprestaurant.Utilidad;
 import java.awt.Frame;
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,20 +24,15 @@ public class Registro extends javax.swing.JFrame {
     ArrayList <Usuario> usuarios;
     /**
      * Creates new form Registro
-     * @param u Lista de usuarios 
+     * @param usu Lista de usuarios 
      */
-    public Registro(ArrayList <Usuario> u) {
+    public Registro(ArrayList <Usuario> usu) {
         initComponents();
-        if(u!=null)
-        {
-            usuarios = u;
-        }
+        if(usu!=null)
+            usuarios = usu;
         else
-        {
             usuarios = new ArrayList <Usuario>();
-        }
         Completado.setVisible(false);
-            
     }
 
     /**
@@ -211,39 +214,27 @@ public class Registro extends javax.swing.JFrame {
 
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
          boolean correcto;
-        //Espacio para programar la condicion
         String c1, c2;
         c1 = new String(contraseña.getPassword());
         c2 = new String(confirmarContraseña.getPassword());
-        System.out.println("correo: " + correo.getText() + "nombre: " + nombre.getText());
-        System.out.println("c1: " + c1 +" c2: "+ c2 );
-        if(""!=nombre.getText() && ""!=correo.getText() && c1.equals(c2) &&  c1!="" && c2!="") 
-// si ningun espacio esta vacío y las contraseñas son iguales
-        {
-            System.out.println("correo: " + correo.getText()+" password: "+ c1 );
-            correcto = true;
-            
-        }
-        else
-        {
-            correcto= false;
-        }
         
+        // si ningun espacio esta vacío y las contraseñas son iguales
+        correcto =( !"".equals(nombre.getText()) && !"".equals(correo.getText())
+                && c1.equals(c2) &&  !"".equals(c1) && !"".equals(c2) );
         if(correcto) //guardar en el array
         {
-            
             Usuario nuevo = new Usuario(nombre.getText(),correo.getText(),c1);
             usuarios.add(nuevo);
+            Utilidad.guardarUsuarios(usuarios);
+            
             Completado.setVisible(true);
-            Frame[] frames = Frame.getFrames();
-            for(int i=0;i<frames.length;i++)
-            {
-                if(frames[i].getName().equals("iniciar"))
-                {
-                    this.setVisible(false);
-                    frames[i].setVisible(true);
-                }
-            }
+            incorrecto.setVisible(false);
+            
+            nombre.setEnabled(false);
+            correo.setEnabled(false);
+            contraseña.setEnabled(false);
+            confirmarContraseña.setEnabled(false);
+            aceptar.setEnabled(false);
         }
         else
         {
@@ -252,8 +243,7 @@ public class Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_aceptarActionPerformed
 
     private void RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarActionPerformed
-        // TODO add your handling code here:
-        Frame[] frames = Frame.getFrames();
+      Frame[] frames = Frame.getFrames();
             for(int i=0;i<frames.length;i++)
             {
                 if(frames[i].getName().equals("iniciar"))

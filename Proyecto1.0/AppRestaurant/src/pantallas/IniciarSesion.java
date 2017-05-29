@@ -5,7 +5,12 @@
 package pantallas;
 
 import apprestaurant.Usuario;
-import java.awt.Frame;
+import apprestaurant.Utilidad;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 public class IniciarSesion extends javax.swing.JFrame {
@@ -17,7 +22,7 @@ public class IniciarSesion extends javax.swing.JFrame {
     public IniciarSesion() {
         initComponents();
         this.setName("iniciar");
-        usuarios = new ArrayList <Usuario>();
+        usuarios = Utilidad.leerUsuarios();
     }
 
     /**
@@ -98,7 +103,7 @@ public class IniciarSesion extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, Short.MAX_VALUE))
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE))
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(correo)
@@ -148,17 +153,17 @@ public class IniciarSesion extends javax.swing.JFrame {
 
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
         String c, cont;
-        
-        //Codigo de comprobacion de usuario
-        
         boolean correcto = false;
+        Usuario actual = null;
+        
         c = correo.getText();
         cont = new String(contraseña.getPassword());
-        System.out.println("Accediendo... correo: " + c+" password: "+ cont);
+        
+        //System.out.println("Accediendo... correo: " + c+" password: "+ cont);
         for(int i =0 ; i<usuarios.size();i++)//buscar si existe en el arraylist
         {
-            System.out.println("Verificando... correo: " +  usuarios.get(i).accedeCorreo() +  " = "+ c+" password: "+ usuarios.get(i).accedeContraseña()+" = "+ cont);
-            if(usuarios.get(i).accedeCorreo().equals(c) && usuarios.get(i).accedeContraseña().equals(cont))//checar info
+            actual = usuarios.get(i);
+            if(actual.accedeCorreo().equals(c) && actual.accedeContraseña().equals(cont))//checar info
             {
                 correcto = true;
             }
@@ -166,20 +171,12 @@ public class IniciarSesion extends javax.swing.JFrame {
         
         if(correcto)
         {
-            MenuPrincipal menuP = new MenuPrincipal();
+            incorrecto.setVisible(false);
+            correo.setText("");
+            contraseña.setText("");
+            MenuPrincipal menuP = new MenuPrincipal(actual);
             this.setVisible(false);
             menuP.setVisible(true);
-            
-        Frame[] frames = Frame.getFrames();
-        for(int i=0;i<frames.length;i++)
-        {
-            if(frames[i].getName().equals("MP"))
-            {
-                this.setVisible(false);
-                frames[i].setVisible(true);
-            }
-        }
-        this.dispose();
         }
         else
         {
@@ -192,8 +189,10 @@ public class IniciarSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_contraseñaActionPerformed
 
     private void registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroActionPerformed
+        incorrecto.setVisible(false);
         correo.setText("");
-        contraseña.setText(" ");
+        contraseña.setText("");
+        usuarios = Utilidad.leerUsuarios();
         Registro reg = new Registro(usuarios); 
         this.setVisible(false);
         reg.setVisible(true);
@@ -229,7 +228,7 @@ public class IniciarSesion extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new IniciarSesion().setVisible(true);
+               // new IniciarSesion().setVisible(true);
             }
         });
     }

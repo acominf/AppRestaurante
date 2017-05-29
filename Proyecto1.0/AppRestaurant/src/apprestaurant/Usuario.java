@@ -4,13 +4,14 @@
  * and open the template in the editor.
  */
 package apprestaurant;
+import java.io.Serializable;
 import java.util.ArrayList;
 import sun.security.util.Password;
 /**
  *
  * @author lucerogarcia
  */
-public class Usuario
+public class Usuario implements Serializable
 {
     private String nombre;
     private String correoElectronico;
@@ -45,6 +46,12 @@ public class Usuario
     {
         return correoElectronico;
     }
+    
+    public ArrayList<Restaurante> accedeRestaurantes()
+    {
+        return restaurantes;
+    }
+    
     /**
      *
      * @param nuevo restaurante a agrega
@@ -58,7 +65,7 @@ public class Usuario
     {
         for(Restaurante r : restaurantes)
         {
-            if(r.regresaNombre() == nombre)
+            if(r.accedeNombre()== nombre)
             {
                 return r;
             }

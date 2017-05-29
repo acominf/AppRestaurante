@@ -5,13 +5,14 @@
  */
 package apprestaurant;
 
+import java.io.Serializable;
 import sun.security.util.Password;
 
 /**
  *
  * @author lucerogarcia
  */
-public class Empleado extends Usuario
+public class Empleado extends Usuario implements Serializable
 {
     private String horInicio;
     private String horFin;

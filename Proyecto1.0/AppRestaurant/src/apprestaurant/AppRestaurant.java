@@ -7,7 +7,6 @@ package apprestaurant;
 
 
 import pantallas.IniciarSesion;
-import pantallas.MenuPrincipal;
 
 /**
  *

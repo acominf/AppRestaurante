@@ -5,6 +5,8 @@
 package pantallas;
 
 import apprestaurant.Restaurante;
+import apprestaurant.Usuario;
+import apprestaurant.Utilidad;
 import java.awt.Frame;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -13,19 +15,31 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 
 
 public class MenuRestaurante extends javax.swing.JFrame {
+    private ArrayList<Usuario> usuarios;
     private Restaurante res;
     /**
      * Creates new form MenuRestaurante
      */
-    public MenuRestaurante(String nomRes) {
+    public MenuRestaurante(String correoUsuario, String nomRes) {
         initComponents();
         this.setName("menuRes");
+        
+        usuarios = Utilidad.leerUsuarios();
+        Usuario actual = Utilidad.buscarUsuario(correoUsuario);
+        for(int i = 0 ; i<actual.accedeRestaurantes().size(); i++)//buscar si existe en el arraylist
+        {
+            res = (actual.accedeRestaurantes()).get(i);
+            if(res.accedeNombre().equals(nomRes))
+                break;
+        }
+        /*
         File archivo = new File (nomRes+".txt");
         FileReader fr;
         String nom = "";
@@ -48,16 +62,16 @@ public class MenuRestaurante extends javax.swing.JFrame {
             Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         
-        titulo.setText(res.regresaNombre());
-        nombre.setText(nom);
-        direccion.setText(dir);
-        telefono.setText(tel);
-        horIni.setText(h1);
-        horFin.setText(h2);
+        titulo.setText(res.accedeNombre());
+        nombre.setText(res.accedeNombre());
+        direccion.setText(res.accedeDireccion());
+        telefono.setText(res.accedeTelefono());
+        horIni.setText(res.accedeHi());
+        horFin.setText(res.accedeHf());
         
-        nombre.setVisible(false);
+        nombre.setVisible(false); 
         direccion.setVisible(false);
         telefono.setVisible(false);
         horIni.setVisible(false);
@@ -103,6 +117,7 @@ public class MenuRestaurante extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         titulo.setFont(new java.awt.Font("Malayalam Sangam MN", 3, 24)); // NOI18N
+        titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titulo.setText("jLabel1");
 
         editInfo.setText("Editar Información");
@@ -182,11 +197,14 @@ public class MenuRestaurante extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(bCancelar)
+                .addGap(45, 45, 45)
+                .addComponent(bAceptar)
+                .addGap(59, 59, 59))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(287, 287, 287)
-                        .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -200,41 +218,35 @@ public class MenuRestaurante extends javax.swing.JFrame {
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, 0)
                                 .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
-                                .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(41, 41, 41)
-                                .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(30, 30, 30)
-                                        .addComponent(horIni, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(bCancelar))
-                                .addGap(20, 20, 20)
-                                .addComponent(jLabel6)
-                                .addGap(9, 9, 9)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(horFin, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(bAceptar)))))))
+                            .addComponent(jLabel5)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(30, 30, 30)
+                                    .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(horIni, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jLabel6)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(horFin, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jButton5))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(34, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton5)
-                .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(21, 21, 21)
                 .addComponent(titulo)
-                .addGap(57, 57, 57)
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(editInfo)
@@ -252,25 +264,28 @@ public class MenuRestaurante extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(14, 14, 14)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(jLabel3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
-                            .addComponent(horIni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel6))
-                            .addComponent(horFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(horFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel6)
+                                .addComponent(horIni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(4, 4, 4)))
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(bAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                    .addComponent(bCancelar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addComponent(jButton5)
-                .addContainerGap())
+                .addGap(30, 30, 30))
         );
 
         pack();
@@ -290,11 +305,10 @@ public class MenuRestaurante extends javax.swing.JFrame {
         jLabel6.setVisible(true);
         bAceptar.setVisible(true);
         bCancelar.setVisible(true);
-        
     }//GEN-LAST:event_editInfoActionPerformed
 
     private void editMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editMenuActionPerformed
-        EditarMenu editMenu = new EditarMenu(res.regresaMenu(),res.regresaNombre());
+        EditarMenu editMenu = new EditarMenu(res.regresaMenu(),res.accedeNombre());
         this.setVisible(false);
         editMenu.setVisible(true);
     }//GEN-LAST:event_editMenuActionPerformed
@@ -331,6 +345,10 @@ public class MenuRestaurante extends javax.swing.JFrame {
         String dir = direccion.getText();
         String h1 = horFin.getText();
         String h2 = horIni.getText();
+        
+        res = new Restaurante(nom, dir, tel, h1, h2);
+        Utilidad.guardarUsuarios(usuarios);
+        /*
         try {
             //fichero = new FileWriter(propietario,true);//escribiendo en el archivo del usuario
             //out.write(nom);
@@ -346,7 +364,10 @@ public class MenuRestaurante extends javax.swing.JFrame {
             Logger.getLogger(NuevoRestaurante.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(NuevoRestaurante.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
+        
+        
+        
         nombre.setVisible(false);
         direccion.setVisible(false);
         telefono.setVisible(false);
@@ -359,18 +380,18 @@ public class MenuRestaurante extends javax.swing.JFrame {
         jLabel6.setVisible(false);
         bAceptar.setVisible(false);
         bCancelar.setVisible(false);
-        
+        titulo.setText(nombre.getText());
     }//GEN-LAST:event_bAceptarActionPerformed
 
     private void diagramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diagramaActionPerformed
         res.añadirMesas(15);
-        DiagramasMesas d = new DiagramasMesas(res.mesasRes(),res.regresaNombre());
+        DiagramasMesas d = new DiagramasMesas(res.mesasRes(),res.accedeNombre());
         this.setVisible(false);
         d.setVisible(true);
     }//GEN-LAST:event_diagramaActionPerformed
 
     private void editPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPersonalActionPerformed
-        EditarPersonal editarPersonal = new EditarPersonal(res.regresaEmpleados(),res.regresaNombre());
+        EditarPersonal editarPersonal = new EditarPersonal(res.regresaEmpleados(),res.accedeNombre());
         this.setVisible(false);
         editarPersonal.setVisible(true);
     }//GEN-LAST:event_editPersonalActionPerformed

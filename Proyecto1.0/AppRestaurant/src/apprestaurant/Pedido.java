@@ -5,13 +5,15 @@
  */
 package apprestaurant;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author lucerogarcia
  */
-public class Pedido {
+public class Pedido implements Serializable
+{
     private ArrayList<Platillo> orden;
     private  boolean estaListo;
     private ArrayList<String>  notas;

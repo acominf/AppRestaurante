@@ -5,11 +5,14 @@
  */
 package apprestaurant;
 
+import java.io.Serializable;
+
 /**
  *
  * @author lucerogarcia
  */
-public class Platillo {
+public class Platillo implements Serializable
+{
     private String nombre;
     private String tipo;
     private float costo;

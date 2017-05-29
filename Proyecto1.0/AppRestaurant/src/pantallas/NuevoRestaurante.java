@@ -4,26 +4,27 @@
  */
 package pantallas;
 
+import apprestaurant.Restaurante;
+import apprestaurant.Usuario;
+import apprestaurant.Utilidad;
 import java.awt.Frame;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
 public class NuevoRestaurante extends javax.swing.JFrame {
-    private String propietario;
+    private String correoPropietario;
     /**
      * Creates new form NuevoRestaurante
      */
-    public NuevoRestaurante() { //String usuario
+    public NuevoRestaurante(String actual) { //String usuario
         initComponents();
-        //propietario = usuario;
+        correoPropietario = actual;
         
     }
 
@@ -52,6 +53,7 @@ public class NuevoRestaurante extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(650, 390));
+        setPreferredSize(new java.awt.Dimension(650, 480));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("PT Mono", 3, 18)); // NOI18N
@@ -103,7 +105,7 @@ public class NuevoRestaurante extends javax.swing.JFrame {
         getContentPane().add(bCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, -1, -1));
 
         jLabel6.setText("a:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, 20, 20));
         getContentPane().add(horFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 250, 130, -1));
 
         pack();
@@ -140,6 +142,22 @@ public class NuevoRestaurante extends javax.swing.JFrame {
         String dir = direccion.getText();
         String h1 = horFin.getText();
         String h2 = horIni.getText();
+        Restaurante nuevo = new Restaurante(nom, tel, dir, h1, h2);
+        
+        ArrayList<Usuario> usuarios = Utilidad.leerUsuarios();
+        Usuario actual = null;
+        for(int i =0 ; i<usuarios.size();i++)//buscar si existe en el arraylist
+        {
+            actual = usuarios.get(i);
+            if(actual.accedeCorreo().equals(correoPropietario))//checar info
+            {
+                actual.crearRestaurante(nuevo);
+                System.out.println(nuevo.accedeNombre());
+            }
+        }
+        Utilidad.guardarUsuarios(usuarios);
+        
+        /*
         try {
             //fichero = new FileWriter(propietario,true);//escribiendo en el archivo del usuario
             //out.write(nom);
@@ -155,7 +173,7 @@ public class NuevoRestaurante extends javax.swing.JFrame {
             Logger.getLogger(NuevoRestaurante.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(NuevoRestaurante.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         
         for(int i=0;i<frames.length;i++)
         {
@@ -198,7 +216,7 @@ public class NuevoRestaurante extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NuevoRestaurante().setVisible(true);
+                //new NuevoRestaurante().setVisible(true);
             }
         });
     }
