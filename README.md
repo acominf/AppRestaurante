@@ -67,7 +67,7 @@ El autor(es) del proyecto son:
 
 ### Video
 Video demostrativo de la aplicación: 
-<iframe width="560" height="315" src=https://youtu.be/729xTBdL9Io>
+<iframe width="560" height="315" src=https://youtu.be/729xTBdL9Io> </iframe>
 
 ### Markdown
 El contenido de esta página está escrito en un lenguaje de marcado sencillo llamado *Markdown*. Para más detalles consulta la página de [Markdown para GitHub](https://guides.github.com/features/mastering-markdown/).
