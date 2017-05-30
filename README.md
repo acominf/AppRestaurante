@@ -14,7 +14,8 @@ La aplicación proporciona a la persona el menú y la información que requiere 
 * nombre : String
 * direccion : String
 * telefono : String
-* horario: String //quizás cambie
+* horarioInicio: String 
+* horarioFin : String
 * empleados :  ArrayList<Empleado>
 * menu : Menu
 * mesas : ArrayList <Mesa>
@@ -23,7 +24,8 @@ La aplicación proporciona a la persona el menú y la información que requiere 
 * menu : ArrayList<Platillo>
 
 4. Empleado
-* horario : String  //quizás cambie
+* horInicio : String 
+* horFin: String  
 * disponibilidad : Boolean
 
 5. Platillo
@@ -50,7 +52,7 @@ La aplicación proporciona a la persona el menú y la información que requiere 
 * nota : String
 
 ### Diagrama de clases
-![Diagrama de clases](https://github.com/acominf/AppRestaurante/blob/master/imágenes/Diagrama%20de%20clases%20UML-NV.png)
+![Diagrama de clases](https://github.com/acominf/AppRestaurante/blob/master/imágenes/Diagrama-UML.png)
 
 ### Autor(es)
 El autor(es) del proyecto son:
