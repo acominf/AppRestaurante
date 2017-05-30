@@ -5,24 +5,17 @@
 package pantallas;
 
 import apprestaurant.Usuario;
-import apprestaurant.Utilidad;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 public class IniciarSesion extends javax.swing.JFrame {
     ArrayList <Usuario> usuarios;
-
     /**
      * Creates new form IniciarSesion
      */
     public IniciarSesion() {
         initComponents();
         this.setName("iniciar");
-        usuarios = Utilidad.leerUsuarios();
+        usuarios = apprestaurant.AppRestaurant.usuarios;
     }
 
     /**
@@ -155,14 +148,11 @@ public class IniciarSesion extends javax.swing.JFrame {
         String c, cont;
         boolean correcto = false;
         Usuario actual = null;
-        usuarios = Utilidad.leerUsuarios();
         c = correo.getText();
         cont = new String(contraseña.getPassword());
         for(int i =0 ; i<usuarios.size();i++)//buscar si existe en el arraylist
         {
             actual = usuarios.get(i);
-            /*System.out.println("correo: " + actual.accedeCorreo()+" Esc correo: "+ c);
-            System.out.println("password: " + actual.accedeContraseña()+" Esc password: "+ cont);*/
             if(actual.accedeCorreo().equals(c) && actual.accedeContraseña().equals(cont))//checar info
             {
                 correcto = true;
@@ -174,7 +164,7 @@ public class IniciarSesion extends javax.swing.JFrame {
             incorrecto.setVisible(false);
             correo.setText("");
             contraseña.setText("");
-            MenuPrincipal menuP = new MenuPrincipal(actual.accedeCorreo());
+            MenuPrincipal menuP = new MenuPrincipal(actual);
             this.setVisible(false);
             menuP.setVisible(true);
         }
@@ -192,12 +182,13 @@ public class IniciarSesion extends javax.swing.JFrame {
         incorrecto.setVisible(false);
         correo.setText("");
         contraseña.setText("");
-        usuarios = Utilidad.leerUsuarios();
+        //usuarios = Utilidad.leerUsuarios();
         Registro reg = new Registro();
         this.setVisible(false);
         reg.setVisible(true);
     }//GEN-LAST:event_registroActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */

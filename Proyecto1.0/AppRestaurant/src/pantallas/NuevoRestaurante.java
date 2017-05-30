@@ -8,25 +8,19 @@ import apprestaurant.Restaurante;
 import apprestaurant.Usuario;
 import apprestaurant.Utilidad;
 import java.awt.Frame;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 public class NuevoRestaurante extends javax.swing.JFrame {
     ArrayList<Usuario> usuarios;
-    private String correoPropietario;
+    private Usuario propietario;
     /**
      * Creates new form NuevoRestaurante
      */
-    public NuevoRestaurante(String actual) { //String usuario
+    public NuevoRestaurante(Usuario actual) { //String usuario
         initComponents();
-        correoPropietario = actual;
-        
+        propietario = actual;
+        usuarios = apprestaurant.AppRestaurant.usuarios;
     }
 
     /**
@@ -137,22 +131,15 @@ public class NuevoRestaurante extends javax.swing.JFrame {
         String nom = nombre.getText();
         String tel = telefono.getText();
         String dir = direccion.getText();
-        String h1 = horFin.getText();
-        String h2 = horIni.getText();
+        String h1 = horIni.getText();
+        String h2 = horFin.getText();
         Restaurante nuevo = new Restaurante(nom, tel, dir, h1, h2);
         
-        usuarios = Utilidad.leerUsuarios();
-        Usuario actual = null;
-        for(int i =0 ; i<usuarios.size();i++)//buscar si existe en el arraylist
-        {
-            actual = usuarios.get(i);
-            if(actual.accedeCorreo().equals(correoPropietario))//checar info
-            {
-                actual.crearRestaurante(nuevo);
-            }
-        }
-        Utilidad.guardarUsuarios(usuarios);
+        //usuarios = Utilidad.leerUsuarios();
+        propietario.crearRestaurante(nuevo);
+        //Utilidad.guardarUsuarios(usuarios);
         
+        Utilidad.guardarUsuarios(usuarios);
         Frame[] frames = Frame.getFrames(); 
         for(int i=0;i<frames.length;i++)
         {

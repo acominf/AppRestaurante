@@ -5,6 +5,8 @@
 package pantallas;
 
 import apprestaurant.Mesa;
+import apprestaurant.Restaurante;
+import apprestaurant.Utilidad;
 import java.awt.Frame;
 import java.util.ArrayList;
 import javax.swing.JButton;
@@ -16,17 +18,20 @@ import javax.swing.JButton;
 public class DiagramasMesas extends javax.swing.JFrame {
     private ArrayList<JButton> botonesMesas;
     private ArrayList <Mesa> mesas;
+    private Restaurante resActual;
     private boolean edicion;
     private String nomRes;
     /**
      * Crea una nueva ventana de diagramasMesas
      */
-    public DiagramasMesas(ArrayList <Mesa> mesas, String nom) {
+    public DiagramasMesas(Restaurante res) {
         initComponents();
-        nomRes=nom;
+        resActual = res;
+        nomRes=res.accedeNombre();
         this.setName("DiagramaMesas");//asigna el nombre de la ventana
         botonesMesas = new ArrayList<JButton>();
-        this.mesas = mesas;
+        
+        this.mesas = res.mesasRes();
         for(Mesa m : mesas)
         {
             JButton nuevo = new JButton();
@@ -73,7 +78,7 @@ public class DiagramasMesas extends javax.swing.JFrame {
                 listoActionPerformed(evt);
             }
         });
-        getContentPane().add(listo, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, 97, 29));
+        getContentPane().add(listo, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 410, 97, 29));
 
         editar.setText("Editar");
         editar.addActionListener(new java.awt.event.ActionListener() {
@@ -81,7 +86,7 @@ public class DiagramasMesas extends javax.swing.JFrame {
                 editarActionPerformed(evt);
             }
         });
-        getContentPane().add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, -1, -1));
+        getContentPane().add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 410, -1, -1));
 
         atras.setText("Atrás");
         atras.addActionListener(new java.awt.event.ActionListener() {
@@ -89,7 +94,7 @@ public class DiagramasMesas extends javax.swing.JFrame {
                 atrasActionPerformed(evt);
             }
         });
-        getContentPane().add(atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, -1, -1));
+        getContentPane().add(atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, -1, -1));
 
         agregar.setText("Agregar");
         agregar.addActionListener(new java.awt.event.ActionListener() {
@@ -97,7 +102,7 @@ public class DiagramasMesas extends javax.swing.JFrame {
                 agregarActionPerformed(evt);
             }
         });
-        getContentPane().add(agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 370, -1, -1));
+        getContentPane().add(agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 410, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -110,12 +115,12 @@ public class DiagramasMesas extends javax.swing.JFrame {
     
     private void mesaActionPerformed(java.awt.event.ActionEvent evt) {                                      
         JButton clickeado= (JButton) evt.getSource();
-        String s= clickeado.getText();
-        for(int i = 0; i< mesas.size();i++)
+        String s = clickeado.getText();
+        for(int i = 0; i < mesas.size();i++)
         {
-            if((s).equals(""+mesas.get(i).accederId() ))
+            if((s).equals(""+(mesas.get(i).accederId() )) )
             {
-                EditarPedido editarPedido = new EditarPedido(mesas.get(i).accederPedido(),nomRes);
+                EditarPedido editarPedido = new EditarPedido(mesas.get(i).accederPedido(), resActual.regresaMenu());
                 this.setVisible(false);
                 editarPedido.setVisible(true);
             }

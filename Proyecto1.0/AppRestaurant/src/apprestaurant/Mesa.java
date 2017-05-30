@@ -15,7 +15,6 @@ public class Mesa implements Serializable
     private Boolean estaOcupada;
     private int coordX;
     private int coordY;
-    private int c;
 
     /**
      *
@@ -25,6 +24,7 @@ public class Mesa implements Serializable
      */
     public Mesa(int cap, int id)
     {
+        pedido = new Pedido();
         capacidad=cap;
         identificador=id;
         estaOcupada = false;

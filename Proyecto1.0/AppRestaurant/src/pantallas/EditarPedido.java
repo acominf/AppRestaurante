@@ -7,6 +7,8 @@ package pantallas;
 import apprestaurant.Menu;
 import apprestaurant.Pedido;
 import apprestaurant.Platillo;
+import apprestaurant.Usuario;
+import apprestaurant.Utilidad;
 import java.awt.Frame;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -24,16 +26,13 @@ public class EditarPedido extends javax.swing.JFrame {
     private Pedido pedido;
     private Menu menu;
     private boolean modif;
-    private String nombreRestaurante;
     /**
      * Crea una nueva ventana EditarPedido
      */
-    public EditarPedido(Pedido p,String nomRes)
+    public EditarPedido(Pedido p, Menu menu)
     {
         initComponents();
-        menu = new Menu();
-        String n=" ",t=" ",d=" ", aux=" ";
-        float c=25;
+        this.menu = menu;
         if(p!=null)
         {
             pedido=p;
@@ -42,36 +41,20 @@ public class EditarPedido extends javax.swing.JFrame {
         {
             pedido = new Pedido();
         }
-        
         modif = false;
-        nombreRestaurante=nomRes;
-        //Platillo plat=new Platillo("Papas","frito",25,"genious");
-        //menu.agregarPlatillo(plat);
         DefaultListModel modelo = (DefaultListModel)ListaMenu.getModel();
-        FileReader f;
-        BufferedReader b;
-        try {
-                f = new FileReader("Menu"+nomRes+".txt"); //LEER ARCHIVO DEL MENU
-                b=new BufferedReader(f);
-                d=" ";
-                while( n!=null || t!=null||d !=null || aux!=null)
-                {
-                    n=b.readLine();
-                    modelo.addElement(n);
-                    t=b.readLine();
-                    aux=b.readLine();
-                    System.out.print(aux);
-                    //c=parseFloat(aux);
-                    d=b.readLine();
-                    Platillo plat= new Platillo(n,t,c,d);
-                    menu.agregarPlatillo(plat);
-                }
-                b.close();
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(NuevoRestaurante.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(NuevoRestaurante.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        for(Platillo auxP: menu.regresaPlatillos())
+        {
+            modelo.addElement(auxP.accedeNombre());
+        }
+        ListaMenu.setModel(modelo);
+        
+        modelo = (DefaultListModel)listaPedido.getModel();
+        for(Platillo auxP: pedido.accedePlatillos())
+        {
+            modelo.addElement(auxP.accedeNombre());
+        }
+        listaPedido.setModel(modelo);
     }
 
     /**
@@ -265,12 +248,11 @@ public class EditarPedido extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bMasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMasActionPerformed
-        String d = " ";
+        String d = "";
         if(!ListaMenu.isSelectionEmpty())
         {
             int i= ListaMenu.getSelectedIndex();
             Platillo platillo = menu.regresaPlatillo(i);
-            System.out.print(platillo.accedeNombre());
             d = Descrip.getText();
             int c = (int) numAgregar.getValue();
             if(c!=0)
@@ -279,7 +261,6 @@ public class EditarPedido extends javax.swing.JFrame {
                 DefaultListModel modeloPedido = (DefaultListModel) listaPedido.getModel();
                 modeloPedido.addElement(platillo.accedeNombre());
             }
-                
         }
         modif = true;
     }//GEN-LAST:event_bMasActionPerformed
@@ -297,7 +278,9 @@ public class EditarPedido extends javax.swing.JFrame {
     }//GEN-LAST:event_bMenosActionPerformed
 
     private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
-       System.out.println(""+pedido.numPlatillos());
+        
+        ArrayList<Usuario> usuarios = apprestaurant.AppRestaurant.usuarios;
+        Utilidad.guardarUsuarios(usuarios);
         Frame[] frames = Frame.getFrames();
         for(int i=0;i<frames.length;i++)
         {

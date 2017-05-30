@@ -34,12 +34,9 @@ public class Pedido implements Serializable
 
     public void agregarPlatillo(Platillo pl, String n,int c)
     {
-        for(int i = 0;i<c;i++)
-        {
-            orden.add(pl);
-            notas.add("");
-            cantidad.add(c);
-        }
+        orden.add(pl);
+        notas.add(n);
+        cantidad.add(c);
     }
 
     public void eliminarPlatillo(int i)
@@ -109,6 +106,11 @@ public class Pedido implements Serializable
     public int regresaCantidad(int i)
     {
         return cantidad.get(i);
+    }
+    
+    public ArrayList<Platillo> accedePlatillos()
+    {
+        return orden;
     }
 }
 

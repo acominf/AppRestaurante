@@ -4,9 +4,10 @@
  */
 package pantallas;
 
-import apprestaurant.Empleado;
 import apprestaurant.Pedido;
 import apprestaurant.Platillo;
+import apprestaurant.Usuario;
+import apprestaurant.Utilidad;
 import java.awt.Frame;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -26,7 +27,6 @@ public class MenuCocinero extends javax.swing.JFrame {
         }
         else
         {
-            System.out.println("numero de pedidos: "+p.size());
             pedidos = p;
             DefaultListModel modelo;
             modelo = (DefaultListModel) (this.listaPedidos.getModel());
@@ -34,8 +34,6 @@ public class MenuCocinero extends javax.swing.JFrame {
             {
                 modelo.add(i,"Pedido"+(i+1)); 
                 Pedido pe = pedidos.get(i);
-                System.out.println(pe.regresaPlatillo(i).accedeNombre());
-                
             }
         }
     }
@@ -103,7 +101,7 @@ public class MenuCocinero extends javax.swing.JFrame {
         getContentPane().add(bListo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, 310, 100));
 
         listaPedidos.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = {};
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -220,6 +218,8 @@ public class MenuCocinero extends javax.swing.JFrame {
     }//GEN-LAST:event_bVerActionPerformed
 
     private void RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarActionPerformed
+        ArrayList<Usuario> usuarios = apprestaurant.AppRestaurant.usuarios;
+        Utilidad.guardarUsuarios(usuarios);
         Frame[] frames = Frame.getFrames();
         for(int i=0;i<frames.length;i++)
         {

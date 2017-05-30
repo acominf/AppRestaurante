@@ -8,6 +8,7 @@ import apprestaurant.Cocinero;
 import apprestaurant.Empleado;
 import apprestaurant.Mesero;
 import apprestaurant.Usuario;
+import apprestaurant.Utilidad;
 import java.awt.Frame;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -36,20 +37,14 @@ public class EditarPersonal extends javax.swing.JFrame {
      */
     public EditarPersonal(ArrayList<Empleado> empleadosIn, String nomRes) {
         initComponents();
-        if(empleadosIn == null)
+        empleados = empleadosIn;
+        DefaultListModel modelo = new DefaultListModel();
+        modelo = (DefaultListModel) (this.jListEmpleados.getModel());
+        for(int i = 0; i<empleados.size(); i++)
         {
-           empleados = new ArrayList<Empleado>();
+            modelo.add(i, ((Empleado)empleados.get(i)).accedeNombre());
         }
-        else
-        {
-            empleados =empleadosIn;
-            DefaultListModel modelo = new DefaultListModel();
-            modelo = (DefaultListModel) (this.jListEmpleados.getModel());
-            for(int i = 0; i<modelo.getSize(); i++)
-            {
-                modelo.add(i, ((Empleado)empleados.get(i)).accedeNombre());
-            }
-        }
+        
         this.nomRes=nomRes;
         lcorreo.setVisible(false);
         lnombre.setVisible(false);
@@ -327,7 +322,6 @@ public class EditarPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_nombreActionPerformed
 
     private void bMasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMasActionPerformed
-        
         nombre.setText("");
         correo.setText("");
         horini.setText("Inicio");
@@ -359,7 +353,6 @@ public class EditarPersonal extends javax.swing.JFrame {
             empleados.remove(i);
         }
         modificacion = true;
-        
     }//GEN-LAST:event_bMenosActionPerformed
 
     private void bAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAceptarActionPerformed
@@ -455,30 +448,8 @@ public class EditarPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_bVerActionPerformed
 
     private void bRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegresarActionPerformed
-       
-        FileWriter fichero = null;
-        BufferedWriter out = null;   
-        if(modificacion)
-        {
-            try {
-                fichero = new FileWriter(nomRes+"Empleados.txt"); //escribir el archivo del restaurante
-                out=new BufferedWriter(fichero);
-                for(int i = 0; i<empleados.size();i++)
-                {
-                    Empleado emp = empleados.get(i);
-                    out.write(emp.accedeNombre()+"\n");
-                    out.write(emp.accedeCorreo()+"\n");
-                    out.write(emp.accedeH1()+"\n");
-                    out.write(emp.accedeH2()+"\n");
-                }
-                out.close();
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(NuevoRestaurante.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(NuevoRestaurante.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        
+        ArrayList<Usuario> usuarios = apprestaurant.AppRestaurant.usuarios;
+        Utilidad.guardarUsuarios(usuarios);
         Frame[] frames = Frame.getFrames();
         for(int i=0;i<frames.length;i++)
         {
@@ -504,29 +475,6 @@ public class EditarPersonal extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditarPersonal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditarPersonal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditarPersonal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditarPersonal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

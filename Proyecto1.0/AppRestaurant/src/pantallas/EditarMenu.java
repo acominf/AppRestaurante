@@ -4,17 +4,12 @@
  */
 package pantallas;
 
-import apprestaurant.Empleado;
 import apprestaurant.Menu;
 import apprestaurant.Platillo;
+import apprestaurant.Usuario;
+import apprestaurant.Utilidad;
 import java.awt.Frame;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 
 
@@ -363,7 +358,7 @@ public class EditarMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_bAceptarActionPerformed
 
     private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
-        FileWriter fichero = null;
+        /*FileWriter fichero = null;
         BufferedWriter out = null;   
         
         if(modif)
@@ -386,8 +381,10 @@ public class EditarMenu extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(NuevoRestaurante.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-
+        }*/
+        
+        ArrayList<Usuario> usuarios = apprestaurant.AppRestaurant.usuarios;
+        Utilidad.guardarUsuarios(usuarios);
         Frame[] frames = Frame.getFrames();
         for(int i=0;i<frames.length;i++)
         {

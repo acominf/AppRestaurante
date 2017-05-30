@@ -8,34 +8,25 @@ import apprestaurant.Restaurante;
 import apprestaurant.Usuario;
 import apprestaurant.Utilidad;
 import java.awt.Frame;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
 
 
 public class MenuRestaurante extends javax.swing.JFrame {
     ArrayList<Usuario> usuarios;
     private Restaurante res;
-    private String correo;
+    private Usuario actual;
     private String nomAnterior;
     /**
      * Creates new form MenuRestaurante
      */
-    public MenuRestaurante(String correoUsuario, String nomRes) {
+    public MenuRestaurante(Usuario actual, Restaurante res) {
         initComponents();
         this.setName("menuRes");
+        this.actual = actual;
         
-        correo = correoUsuario;
-        usuarios = Utilidad.leerUsuarios();
-        res = Utilidad.buscarRestaurante(usuarios, correoUsuario, nomRes);
+        //correo = correoUsuario;
+        usuarios = apprestaurant.AppRestaurant.usuarios;
+        this.res = res;
         nomAnterior = "";
         
         titulo.setText(res.accedeNombre());
@@ -73,7 +64,7 @@ public class MenuRestaurante extends javax.swing.JFrame {
         editPersonal = new javax.swing.JButton();
         editMenu = new javax.swing.JButton();
         diagrama = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        regresar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -122,10 +113,10 @@ public class MenuRestaurante extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("Atras");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        regresar.setText("Atras");
+        regresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                regresarActionPerformed(evt);
             }
         });
 
@@ -187,11 +178,10 @@ public class MenuRestaurante extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(bMenuChef, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(editInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(diagrama, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(editPersonal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(editMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(editInfo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(diagrama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(editPersonal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(editMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -219,7 +209,7 @@ public class MenuRestaurante extends javax.swing.JFrame {
                                                 .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGroup(layout.createSequentialGroup()
                                             .addGap(64, 64, 64)
-                                            .addComponent(jButton5)))))
+                                            .addComponent(regresar)))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(193, 193, 193)
                                 .addComponent(bCancelar)
@@ -273,7 +263,7 @@ public class MenuRestaurante extends javax.swing.JFrame {
                         .addComponent(bCancelar)
                         .addComponent(bMenuChef)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
-                .addComponent(jButton5)
+                .addComponent(regresar)
                 .addGap(30, 30, 30))
         );
 
@@ -327,23 +317,17 @@ public class MenuRestaurante extends javax.swing.JFrame {
     }//GEN-LAST:event_bCancelarActionPerformed
 
     private void bAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAceptarActionPerformed
-        usuarios = Utilidad.leerUsuarios();
-        
         String nom = nombre.getText();
         String tel = telefono.getText();
         String dir = direccion.getText();
-        String h1 = horFin.getText();
-        String h2 = horIni.getText();
-        
-        res = Utilidad.buscarRestaurante(usuarios, correo, nom);
+        String h1 = horIni.getText();
+        String h2 = horFin.getText();
         
         res.modificarNombre(nom);
         res.modificarDireccion(tel);
         res.modificarTelefono(dir);
         res.modificarHi(h1);
         res.modificarHf(h2);
-        
-        Utilidad.guardarUsuarios(usuarios);
         
         nombre.setVisible(false);
         direccion.setVisible(false);
@@ -361,19 +345,19 @@ public class MenuRestaurante extends javax.swing.JFrame {
     }//GEN-LAST:event_bAceptarActionPerformed
 
     private void diagramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diagramaActionPerformed
-        
-        DiagramasMesas d = new DiagramasMesas(res.mesasRes(),res.accedeNombre());
+        DiagramasMesas d = new DiagramasMesas(res);
         this.setVisible(false);
         d.setVisible(true);
     }//GEN-LAST:event_diagramaActionPerformed
 
     private void editPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPersonalActionPerformed
-        EditarPersonal editarPersonal = new EditarPersonal(res.regresaEmpleados(),res.accedeNombre());
+        EditarPersonal editarPersonal = new EditarPersonal(res.regresaEmpleados(), res.accedeNombre());
         this.setVisible(false);
         editarPersonal.setVisible(true);
     }//GEN-LAST:event_editPersonalActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
+        Utilidad.guardarUsuarios(usuarios);
         Frame[] frames = Frame.getFrames();
         for(int i=0;i<frames.length;i++)
         {
@@ -384,7 +368,7 @@ public class MenuRestaurante extends javax.swing.JFrame {
             }
         }
         this.dispose();
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_regresarActionPerformed
 
     private void bMenuChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMenuChefActionPerformed
         // TODO add your handling code here:
@@ -439,13 +423,13 @@ public class MenuRestaurante extends javax.swing.JFrame {
     private javax.swing.JButton editPersonal;
     private javax.swing.JTextField horFin;
     private javax.swing.JTextField horIni;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField nombre;
+    private javax.swing.JButton regresar;
     private javax.swing.JTextField telefono;
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables

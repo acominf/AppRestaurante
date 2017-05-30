@@ -22,14 +22,14 @@ import javax.swing.DefaultListModel;
 public class MenuPrincipal extends javax.swing.JFrame {
     String correo;
     Usuario actual;
+    ArrayList<Usuario> usuarios;
     /**
      * Creates new form MenuPrincipal
      */
-    public MenuPrincipal(String actual) {
+    public MenuPrincipal(Usuario actual) {
         initComponents();
-        ArrayList<Usuario> usuarios = Utilidad.leerUsuarios();
-        correo = actual;
-        this.actual = Utilidad.buscarUsuario(usuarios, actual);
+        usuarios = apprestaurant.AppRestaurant.usuarios;
+        this.actual = actual;
         listaRestaurantes.setVisible(false);
         ir.setVisible(false);
         this.setName("MP");
@@ -131,7 +131,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void bNuevoRestauranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevoRestauranteActionPerformed
         listaRestaurantes.setVisible(false);
         ir.setVisible(false);
-        NuevoRestaurante nuevoR = new NuevoRestaurante(correo);
+        NuevoRestaurante nuevoR = new NuevoRestaurante(actual);
         this.setVisible(false);
         nuevoR.setVisible(true);
     }//GEN-LAST:event_bNuevoRestauranteActionPerformed
@@ -139,7 +139,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void restaurante1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restaurante1ActionPerformed
         ArrayList<Restaurante> rests = actual.accedeRestaurantes();
         
-        //System.out.println(actual.accedeCorreo());
         DefaultListModel modelo = new DefaultListModel();
         for(Restaurante r: rests)
         {
@@ -155,7 +154,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         String nomRes  = busquedaRest.getText();
         ArrayList<Restaurante> res = new  ArrayList<Restaurante>();
-        ArrayList<Usuario> usuarios = Utilidad.leerUsuarios();
+        //ArrayList<Usuario> usuarios = Utilidad.leerUsuarios();
         
         for(int i = 0; i<usuarios.size();i++)
         {
@@ -181,7 +180,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             int i= listaRest.getSelectedIndex();
             DefaultListModel modelo = (DefaultListModel) listaRest.getModel();
             String s = (String) modelo.getElementAt(i);
-            MenuRestaurante menuRes = new MenuRestaurante(actual.accedeCorreo(), actual.accedeNomRestaurante(i)); 
+            MenuRestaurante menuRes = new MenuRestaurante(actual, actual.buscarRestaurante(s)); 
             
             this.setVisible(false);
             menuRes.setVisible(true);
@@ -192,6 +191,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_irActionPerformed
 
     private void CerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarActionPerformed
+        Utilidad.guardarUsuarios(usuarios);
         Frame[] frames = Frame.getFrames();
         for(int i=0;i<frames.length;i++)
         {
