@@ -52,7 +52,7 @@ La aplicación proporciona a la persona el menú y la información que requiere 
 * nota : String
 
 ### Diagrama de clases
-![Diagrama de clases](https://github.com/acominf/AppRestaurante/blob/master/imágenes/Diagrama-UML.png)
+![Diagrama de clases](https://raw.githubusercontent.com/acominf/AppRestaurante/master/imágenes/Diagrama-UML.png)
 
 ### Autor(es)
 El autor(es) del proyecto son:
