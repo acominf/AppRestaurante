@@ -70,22 +70,24 @@ Video demostrativo de la aplicación:
 <iframe width="560" height="315" src="https://www.youtube.com/embed/729xTBdL9Io?rel=0" frameborder="0" allowfullscreen></iframe>
 
 ### Capturas
-![Inicio](https://raw.githubusercontent.com/acominf/AppRestaurante/master/imágenes/Captura%201.png)
+
 Pantalla de inicio de sesión
+![Inicio](https://raw.githubusercontent.com/acominf/AppRestaurante/master/imágenes/Captura%201.png)
 
-![Menu Principal](https://raw.githubusercontent.com/acominf/AppRestaurante/master/imágenes/Captura%202.png)
 Menú Principal para acceder y registrar restaurantes.
+![Menu Principal](https://raw.githubusercontent.com/acominf/AppRestaurante/master/imágenes/Captura%202.png)
 
-![Menu Restaurante](https://raw.githubusercontent.com/acominf/AppRestaurante/master/imágenes/Captura%204.png)
 Menú de las opciones del restaurante
+![Menu Restaurante](https://raw.githubusercontent.com/acominf/AppRestaurante/master/imágenes/Captura%204.png)
 
-![Agregar Personal](https://raw.githubusercontent.com/acominf/AppRestaurante/master/imágenes/Captura%206.png)
 Agregar personal
+![Agregar Personal](https://raw.githubusercontent.com/acominf/AppRestaurante/master/imágenes/Captura%206.png)
 
-![Menu](https://github.com/acominf/AppRestaurante/blob/master/imágenes/Captura%207.png)
 Diagrama de Mesas del restaurante
+![Menu](https://github.com/acominf/AppRestaurante/blob/master/imágenes/Captura%207.png)
 
-![Pedido](https://raw.githubusercontent.com/acominf/AppRestaurante/master/imágenes/Captura%2010.png)
 Agregar un pedido
+![Pedido](https://raw.githubusercontent.com/acominf/AppRestaurante/master/imágenes/Captura%2010.png)
+
 
 
