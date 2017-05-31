@@ -84,7 +84,7 @@ Agregar personal
 ![Agregar Personal](https://raw.githubusercontent.com/acominf/AppRestaurante/master/imágenes/Captura%206.png)
 
 Diagrama de Mesas del restaurante
-![Menu](https://github.com/acominf/AppRestaurante/blob/master/imágenes/Captura%207.png)
+![Menu](https://raw.githubusercontent.com/acominf/AppRestaurante/master/imágenes/Captura%208.png)
 
 Agregar un pedido
 ![Pedido](https://raw.githubusercontent.com/acominf/AppRestaurante/master/imágenes/Captura%2010.png)
