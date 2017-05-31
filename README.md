@@ -71,14 +71,23 @@ Video demostrativo de la aplicación:
 
 ### Capturas
 ![Inicio](https://raw.githubusercontent.com/acominf/AppRestaurante/master/imágenes/Captura%201.png)
+
 ![Menu Principal](https://raw.githubusercontent.com/acominf/AppRestaurante/master/imágenes/Captura%202.png)
+
 ![Menu Principal 2](https://raw.githubusercontent.com/acominf/AppRestaurante/master/imágenes/Captura%203.png)
+
 ![Menu Restaurante](https://raw.githubusercontent.com/acominf/AppRestaurante/master/imágenes/Captura%204.png)
+
 ![Editar Personal](https://raw.githubusercontent.com/acominf/AppRestaurante/master/imágenes/Captura%205.png)
+
 ![Agregar Personal](https://raw.githubusercontent.com/acominf/AppRestaurante/master/imágenes/Captura%206.png)
+
 ![Menu](https://github.com/acominf/AppRestaurante/blob/master/imágenes/Captura%207.png)
+
 ![Diagrama Mesas](https://github.com/acominf/AppRestaurante/blob/master/imágenes/Captura%208.png)
+
 ![Menu Cocinero](https://raw.githubusercontent.com/acominf/AppRestaurante/master/imágenes/Captura%209.png)
+
 ![Pedido](https://raw.githubusercontent.com/acominf/AppRestaurante/master/imágenes/Captura%2010.png)
 
 
