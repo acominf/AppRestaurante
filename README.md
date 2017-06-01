@@ -65,7 +65,7 @@ El autor(es) del proyecto son:
 ### Semestre
 - 2016-2017/II
 
-### ARchivo Ejecutable
+### Archivo Ejecutable
 Enlace para descargar el archivo ejecutable
 https://github.com/acominf/AppRestaurante/releases/tag/1.0.0
 
