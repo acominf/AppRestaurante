@@ -65,6 +65,10 @@ El autor(es) del proyecto son:
 ### Semestre
 - 2016-2017/II
 
+### ARchivo Ejecutable
+Enlace para descargar el archivo ejecutable
+https://github.com/acominf/AppRestaurante/releases/tag/1.0.0
+
 ### Video
 Video demostrativo de la aplicación: 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/729xTBdL9Io?rel=0" frameborder="0" allowfullscreen></iframe>
